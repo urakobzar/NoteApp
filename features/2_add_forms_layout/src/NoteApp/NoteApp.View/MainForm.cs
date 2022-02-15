@@ -26,13 +26,20 @@ namespace NoteApp.View
 
         private void RefreshListBox(string filePath, SearchOption searchOption)
         {
-            NotesListBox.Items.Clear();
-            string resultPath = Directory.GetCurrentDirectory() + "\\AllNotes\\" + filePath;
-            string[] fileList = Directory.GetFiles(resultPath, "*.*", searchOption);
-            foreach (string file in fileList)
+            try
             {
-                string fileName = Path.GetFileName(file).Replace(".txt", "");
-                NotesListBox.Items.Add(fileName);
+                NotesListBox.Items.Clear();
+                string resultPath = Directory.GetCurrentDirectory() + "\\AllNotes\\" + filePath;
+                string[] fileList = Directory.GetFiles(resultPath, "*.*", searchOption);
+                foreach (string file in fileList)
+                {
+                    string fileName = Path.GetFileName(file).Replace(".txt", "");
+                    NotesListBox.Items.Add(fileName);
+                }
+            }
+            finally
+            {
+
             }
         }
 
@@ -168,11 +175,6 @@ namespace NoteApp.View
                 File.Delete(path[0]);     
             }
             RefreshDisplay();
-        }
-
-        private void textBox1_TextChanged(object sender, EventArgs e)
-        {
-
         }
 
         private void aboutToolStripMenuItem1_Click(object sender, EventArgs e)
