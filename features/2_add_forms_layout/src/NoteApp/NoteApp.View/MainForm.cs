@@ -170,11 +170,6 @@ namespace NoteApp.View
             RefreshDisplay();
         }
 
-        private void textBox1_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
         private void aboutToolStripMenuItem1_Click(object sender, EventArgs e)
         {
             AboutForm aboutForm = new AboutForm();

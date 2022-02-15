@@ -150,7 +150,6 @@ namespace NoteApp.View
             this.TextBoxNoteText.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.TextBoxNoteText.Size = new System.Drawing.Size(553, 485);
             this.TextBoxNoteText.TabIndex = 7;
-            this.TextBoxNoteText.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
             // 
             // NoteDateModify
             // 
@@ -272,7 +271,7 @@ namespace NoteApp.View
             // 
             this.ExitToolStripMenuItem1.Name = "ExitToolStripMenuItem1";
             this.ExitToolStripMenuItem1.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Alt | System.Windows.Forms.Keys.F4)));
-            this.ExitToolStripMenuItem1.Size = new System.Drawing.Size(180, 24);
+            this.ExitToolStripMenuItem1.Size = new System.Drawing.Size(150, 24);
             this.ExitToolStripMenuItem1.Text = "Exit";
             this.ExitToolStripMenuItem1.Click += new System.EventHandler(this.exitToolStripMenuItem1_Click);
             // 
@@ -289,21 +288,21 @@ namespace NoteApp.View
             // AddNoteToolStripMenuItem1
             // 
             this.AddNoteToolStripMenuItem1.Name = "AddNoteToolStripMenuItem1";
-            this.AddNoteToolStripMenuItem1.Size = new System.Drawing.Size(180, 24);
+            this.AddNoteToolStripMenuItem1.Size = new System.Drawing.Size(151, 24);
             this.AddNoteToolStripMenuItem1.Text = "Add Note";
             this.AddNoteToolStripMenuItem1.Click += new System.EventHandler(this.addNoteToolStripMenuItem1_Click);
             // 
             // EditNoteToolStripMenuItem1
             // 
             this.EditNoteToolStripMenuItem1.Name = "EditNoteToolStripMenuItem1";
-            this.EditNoteToolStripMenuItem1.Size = new System.Drawing.Size(180, 24);
+            this.EditNoteToolStripMenuItem1.Size = new System.Drawing.Size(151, 24);
             this.EditNoteToolStripMenuItem1.Text = "Edit Note";
             this.EditNoteToolStripMenuItem1.Click += new System.EventHandler(this.editNoteToolStripMenuItem1_Click);
             // 
             // DeleteNoteToolStripMenuItem1
             // 
             this.DeleteNoteToolStripMenuItem1.Name = "DeleteNoteToolStripMenuItem1";
-            this.DeleteNoteToolStripMenuItem1.Size = new System.Drawing.Size(180, 24);
+            this.DeleteNoteToolStripMenuItem1.Size = new System.Drawing.Size(151, 24);
             this.DeleteNoteToolStripMenuItem1.Text = "Delete Note";
             this.DeleteNoteToolStripMenuItem1.Click += new System.EventHandler(this.deleteNoteToolStripMenuItem1_Click);
             // 
@@ -319,7 +318,7 @@ namespace NoteApp.View
             // 
             this.AboutToolStripMenuItem1.Name = "AboutToolStripMenuItem1";
             this.AboutToolStripMenuItem1.ShortcutKeys = System.Windows.Forms.Keys.F1;
-            this.AboutToolStripMenuItem1.Size = new System.Drawing.Size(180, 24);
+            this.AboutToolStripMenuItem1.Size = new System.Drawing.Size(140, 24);
             this.AboutToolStripMenuItem1.Text = "About";
             this.AboutToolStripMenuItem1.Click += new System.EventHandler(this.aboutToolStripMenuItem1_Click);
             // 
