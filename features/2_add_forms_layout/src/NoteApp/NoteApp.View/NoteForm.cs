@@ -21,31 +21,39 @@ namespace NoteApp.View
             ComboBoxNoteCategory.SelectedIndex = 0;
         }
 
-        string globalPath;
-        string firstName;
+        string globalPath;                                                          //Путь до текстового файла
+        string firstName;                                                           //Итоговое название заметки
 
         public NoteForm(string path)
         {
             InitializeComponent();
             string[] names = path.Split('\\');
-            ComboBoxNoteCategory.SelectedItem = names[names.Length - 2];
+            ComboBoxNoteCategory.SelectedItem = names[names.Length - 2];            //Категория заметки
             ComboBoxNoteCategory.Enabled = false;
-            TextBoxNoteTitle.Text = names[names.Length - 1].Replace(".txt", "");
-            NoteDateCreate.Value = File.GetCreationTime(path);
-            NoteDateModify.Value = File.GetLastWriteTime(path);
-            TextBoxNoteText.Text = File.ReadAllText(path);
-            globalPath = path;
-            firstName = TextBoxNoteTitle.Text;
+            TextBoxNoteTitle.Text = names[names.Length - 1].Replace(".txt", "");    //Название заметки
+            NoteDateCreate.Value = File.GetCreationTime(path);                      //Дата создания заметки
+            NoteDateModify.Value = File.GetLastWriteTime(path);                     //Дата модификации заметки
+            TextBoxNoteText.Text = File.ReadAllText(path);                          //Текст заметки
+            globalPath = path;                                                      //Путь до текстового файла
+            firstName = TextBoxNoteTitle.Text;  
         }
 
-        private void button2_Click(object sender, EventArgs e)
+        /// <summary>
+        /// Кнопка "Отмена"
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void ButtonCancel_Click(object sender, EventArgs e)
         {
             Close();
         }
 
-
-
-        private void button1_Click(object sender, EventArgs e)
+        /// <summary>
+        /// Кнопка "ОК"
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void ButtonOK_Click(object sender, EventArgs e)
         {
             if (TextBoxNoteTitle.Text == "")
             {

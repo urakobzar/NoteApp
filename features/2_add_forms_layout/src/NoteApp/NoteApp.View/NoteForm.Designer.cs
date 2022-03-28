@@ -176,7 +176,7 @@ namespace NoteApp.View
             this.ButtonOK.TabIndex = 18;
             this.ButtonOK.Text = "OK";
             this.ButtonOK.UseVisualStyleBackColor = true;
-            this.ButtonOK.Click += new System.EventHandler(this.button1_Click);
+            this.ButtonOK.Click += new System.EventHandler(this.ButtonOK_Click);
             // 
             // ButtonCancel
             // 
@@ -189,7 +189,7 @@ namespace NoteApp.View
             this.ButtonCancel.TabIndex = 19;
             this.ButtonCancel.Text = "Cancel";
             this.ButtonCancel.UseVisualStyleBackColor = true;
-            this.ButtonCancel.Click += new System.EventHandler(this.button2_Click);
+            this.ButtonCancel.Click += new System.EventHandler(this.ButtonCancel_Click);
             // 
             // NoteForm
             // 

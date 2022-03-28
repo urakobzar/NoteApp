@@ -31,6 +31,9 @@ namespace NoteApp.View
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
+            this.DeleteNotePictureBox = new System.Windows.Forms.PictureBox();
+            this.EditNotePictureBox = new System.Windows.Forms.PictureBox();
+            this.AddNotePictureBox = new System.Windows.Forms.PictureBox();
             this.LabelCategoryShow = new System.Windows.Forms.Label();
             this.CategoryComboBox = new System.Windows.Forms.ComboBox();
             this.NotesListBox = new System.Windows.Forms.ListBox();
@@ -44,17 +47,20 @@ namespace NoteApp.View
             this.LabelNoteName = new System.Windows.Forms.Label();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.FileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.ExitToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.ExitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.EditToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.AddNoteToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
-            this.EditNoteToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
-            this.DeleteNoteToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.AddNoteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.EditNoteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.DeleteNoteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.HelpToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
-            this.AboutToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.AboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.DeleteNotePictureBox)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.EditNotePictureBox)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.AddNotePictureBox)).BeginInit();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -69,6 +75,9 @@ namespace NoteApp.View
             // 
             // splitContainer1.Panel1
             // 
+            this.splitContainer1.Panel1.Controls.Add(this.DeleteNotePictureBox);
+            this.splitContainer1.Panel1.Controls.Add(this.EditNotePictureBox);
+            this.splitContainer1.Panel1.Controls.Add(this.AddNotePictureBox);
             this.splitContainer1.Panel1.Controls.Add(this.LabelCategoryShow);
             this.splitContainer1.Panel1.Controls.Add(this.CategoryComboBox);
             this.splitContainer1.Panel1.Controls.Add(this.NotesListBox);
@@ -86,6 +95,51 @@ namespace NoteApp.View
             this.splitContainer1.Size = new System.Drawing.Size(844, 567);
             this.splitContainer1.SplitterDistance = 281;
             this.splitContainer1.TabIndex = 0;
+            // 
+            // DeleteNotePictureBox
+            // 
+            this.DeleteNotePictureBox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.DeleteNotePictureBox.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.DeleteNotePictureBox.Image = global::NoteApp.View.Properties.Resources.DeleteNote;
+            this.DeleteNotePictureBox.Location = new System.Drawing.Point(75, 534);
+            this.DeleteNotePictureBox.Name = "DeleteNotePictureBox";
+            this.DeleteNotePictureBox.Size = new System.Drawing.Size(30, 30);
+            this.DeleteNotePictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.DeleteNotePictureBox.TabIndex = 9;
+            this.DeleteNotePictureBox.TabStop = false;
+            this.DeleteNotePictureBox.Click += new System.EventHandler(this.DeleteNotePictureBox_Click);
+            // 
+            // EditNotePictureBox
+            // 
+            this.EditNotePictureBox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.EditNotePictureBox.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.EditNotePictureBox.Image = global::NoteApp.View.Properties.Resources.EditNote;
+            this.EditNotePictureBox.Location = new System.Drawing.Point(39, 534);
+            this.EditNotePictureBox.Name = "EditNotePictureBox";
+            this.EditNotePictureBox.Size = new System.Drawing.Size(30, 30);
+            this.EditNotePictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.EditNotePictureBox.TabIndex = 8;
+            this.EditNotePictureBox.TabStop = false;
+            this.EditNotePictureBox.Click += new System.EventHandler(this.EditNotePictureBox_Click);
+            // 
+            // AddNotePictureBox
+            // 
+            this.AddNotePictureBox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.AddNotePictureBox.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.AddNotePictureBox.Image = global::NoteApp.View.Properties.Resources.AddNote;
+            this.AddNotePictureBox.Location = new System.Drawing.Point(3, 534);
+            this.AddNotePictureBox.Name = "AddNotePictureBox";
+            this.AddNotePictureBox.Size = new System.Drawing.Size(30, 30);
+            this.AddNotePictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.AddNotePictureBox.TabIndex = 3;
+            this.AddNotePictureBox.TabStop = false;
+            this.AddNotePictureBox.Click += new System.EventHandler(this.AddNotePictureBox_Click);
             // 
             // LabelCategoryShow
             // 
@@ -121,7 +175,7 @@ namespace NoteApp.View
             this.CategoryComboBox.Name = "CategoryComboBox";
             this.CategoryComboBox.Size = new System.Drawing.Size(168, 24);
             this.CategoryComboBox.TabIndex = 1;
-            this.CategoryComboBox.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
+            this.CategoryComboBox.SelectedIndexChanged += new System.EventHandler(this.CategoryComboBox_SelectedIndexChanged);
             // 
             // NotesListBox
             // 
@@ -133,9 +187,9 @@ namespace NoteApp.View
             this.NotesListBox.ItemHeight = 16;
             this.NotesListBox.Location = new System.Drawing.Point(3, 33);
             this.NotesListBox.Name = "NotesListBox";
-            this.NotesListBox.Size = new System.Drawing.Size(275, 532);
+            this.NotesListBox.Size = new System.Drawing.Size(275, 500);
             this.NotesListBox.TabIndex = 0;
-            this.NotesListBox.SelectedIndexChanged += new System.EventHandler(this.listBox1_SelectedIndexChanged);
+            this.NotesListBox.SelectedIndexChanged += new System.EventHandler(this.NotesListBox_SelectedIndexChanged);
             // 
             // TextBoxNoteText
             // 
@@ -262,65 +316,65 @@ namespace NoteApp.View
             // FileToolStripMenuItem
             // 
             this.FileToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.ExitToolStripMenuItem1});
+            this.ExitToolStripMenuItem});
             this.FileToolStripMenuItem.Name = "FileToolStripMenuItem";
             this.FileToolStripMenuItem.Size = new System.Drawing.Size(41, 23);
             this.FileToolStripMenuItem.Text = "File";
             // 
-            // ExitToolStripMenuItem1
+            // ExitToolStripMenuItem
             // 
-            this.ExitToolStripMenuItem1.Name = "ExitToolStripMenuItem1";
-            this.ExitToolStripMenuItem1.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Alt | System.Windows.Forms.Keys.F4)));
-            this.ExitToolStripMenuItem1.Size = new System.Drawing.Size(150, 24);
-            this.ExitToolStripMenuItem1.Text = "Exit";
-            this.ExitToolStripMenuItem1.Click += new System.EventHandler(this.exitToolStripMenuItem1_Click);
+            this.ExitToolStripMenuItem.Name = "ExitToolStripMenuItem";
+            this.ExitToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Alt | System.Windows.Forms.Keys.F4)));
+            this.ExitToolStripMenuItem.Size = new System.Drawing.Size(180, 24);
+            this.ExitToolStripMenuItem.Text = "Exit";
+            this.ExitToolStripMenuItem.Click += new System.EventHandler(this.ExitToolStripMenuItem_Click);
             // 
             // EditToolStripMenuItem
             // 
             this.EditToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.AddNoteToolStripMenuItem1,
-            this.EditNoteToolStripMenuItem1,
-            this.DeleteNoteToolStripMenuItem1});
+            this.AddNoteToolStripMenuItem,
+            this.EditNoteToolStripMenuItem,
+            this.DeleteNoteToolStripMenuItem});
             this.EditToolStripMenuItem.Name = "EditToolStripMenuItem";
             this.EditToolStripMenuItem.Size = new System.Drawing.Size(44, 23);
             this.EditToolStripMenuItem.Text = "Edit";
             // 
-            // AddNoteToolStripMenuItem1
+            // AddNoteToolStripMenuItem
             // 
-            this.AddNoteToolStripMenuItem1.Name = "AddNoteToolStripMenuItem1";
-            this.AddNoteToolStripMenuItem1.Size = new System.Drawing.Size(151, 24);
-            this.AddNoteToolStripMenuItem1.Text = "Add Note";
-            this.AddNoteToolStripMenuItem1.Click += new System.EventHandler(this.addNoteToolStripMenuItem1_Click);
+            this.AddNoteToolStripMenuItem.Name = "AddNoteToolStripMenuItem";
+            this.AddNoteToolStripMenuItem.Size = new System.Drawing.Size(180, 24);
+            this.AddNoteToolStripMenuItem.Text = "Add Note";
+            this.AddNoteToolStripMenuItem.Click += new System.EventHandler(this.AddNoteToolStripMenuItem_Click);
             // 
-            // EditNoteToolStripMenuItem1
+            // EditNoteToolStripMenuItem
             // 
-            this.EditNoteToolStripMenuItem1.Name = "EditNoteToolStripMenuItem1";
-            this.EditNoteToolStripMenuItem1.Size = new System.Drawing.Size(151, 24);
-            this.EditNoteToolStripMenuItem1.Text = "Edit Note";
-            this.EditNoteToolStripMenuItem1.Click += new System.EventHandler(this.editNoteToolStripMenuItem1_Click);
+            this.EditNoteToolStripMenuItem.Name = "EditNoteToolStripMenuItem";
+            this.EditNoteToolStripMenuItem.Size = new System.Drawing.Size(180, 24);
+            this.EditNoteToolStripMenuItem.Text = "Edit Note";
+            this.EditNoteToolStripMenuItem.Click += new System.EventHandler(this.EditNoteToolStripMenuItem_Click);
             // 
-            // DeleteNoteToolStripMenuItem1
+            // DeleteNoteToolStripMenuItem
             // 
-            this.DeleteNoteToolStripMenuItem1.Name = "DeleteNoteToolStripMenuItem1";
-            this.DeleteNoteToolStripMenuItem1.Size = new System.Drawing.Size(151, 24);
-            this.DeleteNoteToolStripMenuItem1.Text = "Delete Note";
-            this.DeleteNoteToolStripMenuItem1.Click += new System.EventHandler(this.deleteNoteToolStripMenuItem1_Click);
+            this.DeleteNoteToolStripMenuItem.Name = "DeleteNoteToolStripMenuItem";
+            this.DeleteNoteToolStripMenuItem.Size = new System.Drawing.Size(180, 24);
+            this.DeleteNoteToolStripMenuItem.Text = "Delete Note";
+            this.DeleteNoteToolStripMenuItem.Click += new System.EventHandler(this.DeleteNoteToolStripMenuItem_Click);
             // 
             // HelpToolStripMenuItem1
             // 
             this.HelpToolStripMenuItem1.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.AboutToolStripMenuItem1});
+            this.AboutToolStripMenuItem});
             this.HelpToolStripMenuItem1.Name = "HelpToolStripMenuItem1";
             this.HelpToolStripMenuItem1.Size = new System.Drawing.Size(49, 23);
             this.HelpToolStripMenuItem1.Text = "Help";
             // 
-            // AboutToolStripMenuItem1
+            // AboutToolStripMenuItem
             // 
-            this.AboutToolStripMenuItem1.Name = "AboutToolStripMenuItem1";
-            this.AboutToolStripMenuItem1.ShortcutKeys = System.Windows.Forms.Keys.F1;
-            this.AboutToolStripMenuItem1.Size = new System.Drawing.Size(140, 24);
-            this.AboutToolStripMenuItem1.Text = "About";
-            this.AboutToolStripMenuItem1.Click += new System.EventHandler(this.aboutToolStripMenuItem1_Click);
+            this.AboutToolStripMenuItem.Name = "AboutToolStripMenuItem";
+            this.AboutToolStripMenuItem.ShortcutKeys = System.Windows.Forms.Keys.F1;
+            this.AboutToolStripMenuItem.Size = new System.Drawing.Size(180, 24);
+            this.AboutToolStripMenuItem.Text = "About";
+            this.AboutToolStripMenuItem.Click += new System.EventHandler(this.AboutToolStripMenuItem_Click);
             // 
             // MainForm
             // 
@@ -341,6 +395,9 @@ namespace NoteApp.View
             this.splitContainer1.Panel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
             this.splitContainer1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.DeleteNotePictureBox)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.EditNotePictureBox)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.AddNotePictureBox)).EndInit();
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             this.ResumeLayout(false);
@@ -362,15 +419,18 @@ namespace NoteApp.View
         private System.Windows.Forms.DateTimePicker NoteDateCreate;
         private System.Windows.Forms.MenuStrip menuStrip1;
         private System.Windows.Forms.ToolStripMenuItem FileToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem ExitToolStripMenuItem1;
+        private System.Windows.Forms.ToolStripMenuItem ExitToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem EditToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem AddNoteToolStripMenuItem1;
-        private System.Windows.Forms.ToolStripMenuItem EditNoteToolStripMenuItem1;
-        private System.Windows.Forms.ToolStripMenuItem DeleteNoteToolStripMenuItem1;
+        private System.Windows.Forms.ToolStripMenuItem AddNoteToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem EditNoteToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem DeleteNoteToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem HelpToolStripMenuItem1;
-        private System.Windows.Forms.ToolStripMenuItem AboutToolStripMenuItem1;
+        private System.Windows.Forms.ToolStripMenuItem AboutToolStripMenuItem;
         private System.Windows.Forms.TextBox TextBoxNoteText;
         private System.Windows.Forms.ListBox NotesListBox;
+        private System.Windows.Forms.PictureBox AddNotePictureBox;
+        private System.Windows.Forms.PictureBox DeleteNotePictureBox;
+        private System.Windows.Forms.PictureBox EditNotePictureBox;
     }
 }
 
