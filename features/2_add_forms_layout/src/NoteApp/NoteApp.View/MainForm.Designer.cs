@@ -98,9 +98,7 @@ namespace NoteApp.View
             // 
             // DeleteNotePictureBox
             // 
-            this.DeleteNotePictureBox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+            this.DeleteNotePictureBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.DeleteNotePictureBox.Cursor = System.Windows.Forms.Cursors.Hand;
             this.DeleteNotePictureBox.Image = global::NoteApp.View.Properties.Resources.DeleteNote;
             this.DeleteNotePictureBox.Location = new System.Drawing.Point(75, 534);
@@ -113,9 +111,7 @@ namespace NoteApp.View
             // 
             // EditNotePictureBox
             // 
-            this.EditNotePictureBox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+            this.EditNotePictureBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.EditNotePictureBox.Cursor = System.Windows.Forms.Cursors.Hand;
             this.EditNotePictureBox.Image = global::NoteApp.View.Properties.Resources.EditNote;
             this.EditNotePictureBox.Location = new System.Drawing.Point(39, 534);
@@ -128,9 +124,7 @@ namespace NoteApp.View
             // 
             // AddNotePictureBox
             // 
-            this.AddNotePictureBox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+            this.AddNotePictureBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.AddNotePictureBox.Cursor = System.Windows.Forms.Cursors.Hand;
             this.AddNotePictureBox.Image = global::NoteApp.View.Properties.Resources.AddNote;
             this.AddNotePictureBox.Location = new System.Drawing.Point(3, 534);
@@ -184,6 +178,7 @@ namespace NoteApp.View
             | System.Windows.Forms.AnchorStyles.Right)));
             this.NotesListBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.NotesListBox.FormattingEnabled = true;
+            this.NotesListBox.IntegralHeight = false;
             this.NotesListBox.ItemHeight = 16;
             this.NotesListBox.Location = new System.Drawing.Point(3, 33);
             this.NotesListBox.Name = "NotesListBox";
@@ -325,7 +320,7 @@ namespace NoteApp.View
             // 
             this.ExitToolStripMenuItem.Name = "ExitToolStripMenuItem";
             this.ExitToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Alt | System.Windows.Forms.Keys.F4)));
-            this.ExitToolStripMenuItem.Size = new System.Drawing.Size(180, 24);
+            this.ExitToolStripMenuItem.Size = new System.Drawing.Size(150, 24);
             this.ExitToolStripMenuItem.Text = "Exit";
             this.ExitToolStripMenuItem.Click += new System.EventHandler(this.ExitToolStripMenuItem_Click);
             // 
@@ -342,21 +337,21 @@ namespace NoteApp.View
             // AddNoteToolStripMenuItem
             // 
             this.AddNoteToolStripMenuItem.Name = "AddNoteToolStripMenuItem";
-            this.AddNoteToolStripMenuItem.Size = new System.Drawing.Size(180, 24);
+            this.AddNoteToolStripMenuItem.Size = new System.Drawing.Size(151, 24);
             this.AddNoteToolStripMenuItem.Text = "Add Note";
             this.AddNoteToolStripMenuItem.Click += new System.EventHandler(this.AddNoteToolStripMenuItem_Click);
             // 
             // EditNoteToolStripMenuItem
             // 
             this.EditNoteToolStripMenuItem.Name = "EditNoteToolStripMenuItem";
-            this.EditNoteToolStripMenuItem.Size = new System.Drawing.Size(180, 24);
+            this.EditNoteToolStripMenuItem.Size = new System.Drawing.Size(151, 24);
             this.EditNoteToolStripMenuItem.Text = "Edit Note";
             this.EditNoteToolStripMenuItem.Click += new System.EventHandler(this.EditNoteToolStripMenuItem_Click);
             // 
             // DeleteNoteToolStripMenuItem
             // 
             this.DeleteNoteToolStripMenuItem.Name = "DeleteNoteToolStripMenuItem";
-            this.DeleteNoteToolStripMenuItem.Size = new System.Drawing.Size(180, 24);
+            this.DeleteNoteToolStripMenuItem.Size = new System.Drawing.Size(151, 24);
             this.DeleteNoteToolStripMenuItem.Text = "Delete Note";
             this.DeleteNoteToolStripMenuItem.Click += new System.EventHandler(this.DeleteNoteToolStripMenuItem_Click);
             // 
@@ -372,7 +367,7 @@ namespace NoteApp.View
             // 
             this.AboutToolStripMenuItem.Name = "AboutToolStripMenuItem";
             this.AboutToolStripMenuItem.ShortcutKeys = System.Windows.Forms.Keys.F1;
-            this.AboutToolStripMenuItem.Size = new System.Drawing.Size(180, 24);
+            this.AboutToolStripMenuItem.Size = new System.Drawing.Size(140, 24);
             this.AboutToolStripMenuItem.Text = "About";
             this.AboutToolStripMenuItem.Click += new System.EventHandler(this.AboutToolStripMenuItem_Click);
             // 

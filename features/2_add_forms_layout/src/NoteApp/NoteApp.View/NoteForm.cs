@@ -68,23 +68,30 @@ namespace NoteApp.View
                 MessageBox.Show("Имя файла не должно содержать следующих знаков: \\ / : * ? \" < > |");
                 return;
             }
-            string filePath = Directory.GetCurrentDirectory() + "\\AllNotes\\" 
-                + category + "\\" + name + ".txt";
-            string text = TextBoxNoteText.Text;
-            // открываем файл (стираем содержимое файла)
-            FileStream fileStream = File.Open(filePath, FileMode.Create);
-            // получаем поток
-            StreamWriter output = new StreamWriter(fileStream);
-            // записываем текст в поток
-            output.Write(text);
-            // закрываем поток
-            output.Close();
-            if ((firstName!=name)&&(globalPath!=null))
+            try
             {
-                File.Delete(globalPath);
-                globalPath = null;
+                string filePath = Directory.GetCurrentDirectory() + "\\AllNotes\\"
+                    + category + "\\" + name + ".txt";
+                string text = TextBoxNoteText.Text;
+                // открываем файл (стираем содержимое файла)
+                FileStream fileStream = File.Open(filePath, FileMode.Create);
+                // получаем поток
+                StreamWriter output = new StreamWriter(fileStream);
+                // записываем текст в поток
+                output.Write(text);
+                // закрываем поток
+                output.Close();
+                if ((firstName != name) && (globalPath != null))
+                {
+                    File.Delete(globalPath);
+                    globalPath = null;
+                }
+                Close();
             }
-            Close();
+            catch
+            {
+
+            }
         }
     }
 }

@@ -22,6 +22,46 @@ namespace NoteApp.View
             DeleteNoteToolStripMenuItem.Enabled = false;
             EditNotePictureBox.Enabled = false;
             DeleteNotePictureBox.Enabled = false;
+            NoteDirectoryCreate();
+        }
+
+        /// <summary>
+        /// Проверка и создание папок, в которых хранятся заметки
+        /// </summary>
+        private void NoteDirectoryCreate()
+        {
+            if (!(Directory.Exists(Directory.GetCurrentDirectory() + "\\AllNotes")))
+            {
+                Directory.CreateDirectory(Directory.GetCurrentDirectory() + "\\AllNotes");
+            }
+            if (!(Directory.Exists(Directory.GetCurrentDirectory() + "\\AllNotes\\Documents")))
+            {
+                Directory.CreateDirectory(Directory.GetCurrentDirectory() + "\\AllNotes\\Documents");
+            }
+            if (!(Directory.Exists(Directory.GetCurrentDirectory() + "\\AllNotes\\Finance")))
+            {
+                Directory.CreateDirectory(Directory.GetCurrentDirectory() + "\\AllNotes\\Finance");
+            }
+            if (!(Directory.Exists(Directory.GetCurrentDirectory() + "\\AllNotes\\Health and Sports")))
+            {
+                Directory.CreateDirectory(Directory.GetCurrentDirectory() + "\\AllNotes\\Health and Sports");
+            }
+            if (!(Directory.Exists(Directory.GetCurrentDirectory() + "\\AllNotes\\Home")))
+            {
+                Directory.CreateDirectory(Directory.GetCurrentDirectory() + "\\AllNotes\\Home");
+            }
+            if (!(Directory.Exists(Directory.GetCurrentDirectory() + "\\AllNotes\\Miscs")))
+            {
+                Directory.CreateDirectory(Directory.GetCurrentDirectory() + "\\AllNotes\\Miscs");
+            }
+            if (!(Directory.Exists(Directory.GetCurrentDirectory() + "\\AllNotes\\People")))
+            {
+                Directory.CreateDirectory(Directory.GetCurrentDirectory() + "\\AllNotes\\People");
+            }
+            if (!(Directory.Exists(Directory.GetCurrentDirectory() + "\\AllNotes\\Work")))
+            {
+                Directory.CreateDirectory(Directory.GetCurrentDirectory() + "\\AllNotes\\Work");
+            }
         }
 
         // Глобальная переменная, отвечает за путь к текстовому файлу
@@ -30,8 +70,8 @@ namespace NoteApp.View
         /// <summary>
         /// Обновление списка заметок
         /// </summary>
-        /// <param name="filePath"></param>
-        /// <param name="searchOption"></param>
+        /// <param name="filePath">Путь до файла</param>
+        /// <param name="searchOption">Искать только в каталоге или в подкаталогах</param>
         private void RefreshListBox(string filePath, SearchOption searchOption)
         {
             try
@@ -45,7 +85,7 @@ namespace NoteApp.View
                     NotesListBox.Items.Add(fileName);
                 }
             }
-            finally
+            catch
             {
 
             }
