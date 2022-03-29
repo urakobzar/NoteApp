@@ -29,6 +29,7 @@ namespace NoteApp.View
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AboutForm));
             this.LabelNoteApp = new System.Windows.Forms.Label();
             this.LabelApplicationVersion = new System.Windows.Forms.Label();
             this.LabelApplicationAuthor = new System.Windows.Forms.Label();
@@ -125,6 +126,7 @@ namespace NoteApp.View
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.SystemColors.ControlLightLight;
             this.ClientSize = new System.Drawing.Size(403, 235);
             this.Controls.Add(this.LinkLabelGitHub);
             this.Controls.Add(this.LinkLabelFeedbackEmail);
@@ -135,6 +137,7 @@ namespace NoteApp.View
             this.Controls.Add(this.LabelApplicationVersion);
             this.Controls.Add(this.LabelNoteApp);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.Name = "AboutForm";
             this.ShowIcon = false;

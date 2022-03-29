@@ -20,8 +20,8 @@ namespace NoteApp.View
             CategoryComboBox.SelectedIndex = 0;
             EditNoteToolStripMenuItem.Enabled = false;
             DeleteNoteToolStripMenuItem.Enabled = false;
-            EditNotePictureBox.Enabled = false;
-            DeleteNotePictureBox.Enabled = false;
+            EditNoteButton.Enabled = false;
+            DeleteNoteButton.Enabled = false;
             NoteDirectoryCreate();
         }
 
@@ -126,16 +126,16 @@ namespace NoteApp.View
                 {
                     EditNoteToolStripMenuItem.Enabled = false;
                     DeleteNoteToolStripMenuItem.Enabled = false;
-                    EditNotePictureBox.Enabled = false;
-                    DeleteNotePictureBox.Enabled = false;
+                    EditNoteButton.Enabled = false;
+                    DeleteNoteButton.Enabled = false;
                     return;
                 }
                 else
                 {
                     EditNoteToolStripMenuItem.Enabled = true;
                     DeleteNoteToolStripMenuItem.Enabled = true;
-                    EditNotePictureBox.Enabled = true;
-                    DeleteNotePictureBox.Enabled = true;
+                    EditNoteButton.Enabled = true;
+                    DeleteNoteButton.Enabled = true;
                 }
                 path = Directory.GetFiles(Directory.GetCurrentDirectory() + 
                     "\\AllNotes\\", NotesListBox.SelectedItem.ToString() + ".txt", SearchOption.AllDirectories);
@@ -163,8 +163,8 @@ namespace NoteApp.View
         {
             EditNoteToolStripMenuItem.Enabled = false;
             DeleteNoteToolStripMenuItem.Enabled = false;
-            EditNotePictureBox.Enabled = false;
-            DeleteNotePictureBox.Enabled = false;
+            EditNoteButton.Enabled = false;
+            DeleteNoteButton.Enabled = false;
             try
             {
                 if (CategoryComboBox.SelectedIndex == 0)
@@ -176,7 +176,7 @@ namespace NoteApp.View
                     RefreshListBox(CategoryComboBox.Text + "\\", SearchOption.TopDirectoryOnly);
                 }
             }
-            finally
+            catch
             {
 
             }
@@ -213,7 +213,7 @@ namespace NoteApp.View
                     RefreshListBox(CategoryComboBox.Text + "\\", SearchOption.TopDirectoryOnly);
                 }
             }
-            finally
+            catch
             {
 
             }
@@ -240,7 +240,7 @@ namespace NoteApp.View
                     RefreshListBox(CategoryComboBox.Text + "\\", SearchOption.TopDirectoryOnly);
                 }
             }
-            finally
+            catch 
             {
 
             }
@@ -275,12 +275,13 @@ namespace NoteApp.View
             aboutForm.ShowDialog();
         }
 
+
         /// <summary>
         /// Добавить новую заметку через пиктограмму
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void AddNotePictureBox_Click(object sender, EventArgs e)
+        private void AddNoteButton_Click(object sender, EventArgs e)
         {
             NoteForm noteForm = new NoteForm();
             noteForm.ShowDialog();
@@ -295,9 +296,26 @@ namespace NoteApp.View
                     RefreshListBox(CategoryComboBox.Text + "\\", SearchOption.TopDirectoryOnly);
                 }
             }
-            finally
+            catch
             {
 
+            }
+            RefreshDisplay();
+        }
+
+        /// <summary>
+        /// Удалить заметку через пиктограмму
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void DeleteNoteButton_Click(object sender, EventArgs e)
+        {
+            DialogResult dialogResult = MessageBox.Show("Вы точно хотите удалить заметку: \""
+                + NotesListBox.SelectedItem.ToString() + "\"", "Предупреждение", MessageBoxButtons.YesNo);
+            if (dialogResult == DialogResult.Yes)
+            {
+                NotesListBox.Items.Remove(NotesListBox.SelectedItem.ToString());
+                File.Delete(path[0]);
             }
             RefreshDisplay();
         }
@@ -307,7 +325,7 @@ namespace NoteApp.View
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void EditNotePictureBox_Click(object sender, EventArgs e)
+        private void EditNoteButton_Click(object sender, EventArgs e)
         {
             NoteForm noteForm = new NoteForm(path[0]);
             noteForm.ShowDialog();
@@ -322,26 +340,9 @@ namespace NoteApp.View
                     RefreshListBox(CategoryComboBox.Text + "\\", SearchOption.TopDirectoryOnly);
                 }
             }
-            finally
+            catch
             {
 
-            }
-            RefreshDisplay();
-        }
-
-        /// <summary>
-        /// Удалить заметку через пиктограмму
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void DeleteNotePictureBox_Click(object sender, EventArgs e)
-        {
-            DialogResult dialogResult = MessageBox.Show("Вы точно хотите удалить заметку: \""
-                + NotesListBox.SelectedItem.ToString() + "\"", "Предупреждение", MessageBoxButtons.YesNo);
-            if (dialogResult == DialogResult.Yes)
-            {
-                NotesListBox.Items.Remove(NotesListBox.SelectedItem.ToString());
-                File.Delete(path[0]);
             }
             RefreshDisplay();
         }

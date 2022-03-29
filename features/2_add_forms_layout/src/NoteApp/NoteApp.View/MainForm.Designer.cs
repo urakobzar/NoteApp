@@ -31,9 +31,9 @@ namespace NoteApp.View
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
-            this.DeleteNotePictureBox = new System.Windows.Forms.PictureBox();
-            this.EditNotePictureBox = new System.Windows.Forms.PictureBox();
-            this.AddNotePictureBox = new System.Windows.Forms.PictureBox();
+            this.EditNoteButton = new System.Windows.Forms.Button();
+            this.DeleteNoteButton = new System.Windows.Forms.Button();
+            this.AddNoteButton = new System.Windows.Forms.Button();
             this.LabelCategoryShow = new System.Windows.Forms.Label();
             this.CategoryComboBox = new System.Windows.Forms.ComboBox();
             this.NotesListBox = new System.Windows.Forms.ListBox();
@@ -45,7 +45,7 @@ namespace NoteApp.View
             this.LabelSelectedCategoryNote = new System.Windows.Forms.Label();
             this.LabelCategoryNote = new System.Windows.Forms.Label();
             this.LabelNoteName = new System.Windows.Forms.Label();
-            this.menuStrip1 = new System.Windows.Forms.MenuStrip();
+            this.menuStrip = new System.Windows.Forms.MenuStrip();
             this.FileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ExitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.EditToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -58,10 +58,7 @@ namespace NoteApp.View
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.DeleteNotePictureBox)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.EditNotePictureBox)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.AddNotePictureBox)).BeginInit();
-            this.menuStrip1.SuspendLayout();
+            this.menuStrip.SuspendLayout();
             this.SuspendLayout();
             // 
             // splitContainer1
@@ -75,9 +72,9 @@ namespace NoteApp.View
             // 
             // splitContainer1.Panel1
             // 
-            this.splitContainer1.Panel1.Controls.Add(this.DeleteNotePictureBox);
-            this.splitContainer1.Panel1.Controls.Add(this.EditNotePictureBox);
-            this.splitContainer1.Panel1.Controls.Add(this.AddNotePictureBox);
+            this.splitContainer1.Panel1.Controls.Add(this.EditNoteButton);
+            this.splitContainer1.Panel1.Controls.Add(this.DeleteNoteButton);
+            this.splitContainer1.Panel1.Controls.Add(this.AddNoteButton);
             this.splitContainer1.Panel1.Controls.Add(this.LabelCategoryShow);
             this.splitContainer1.Panel1.Controls.Add(this.CategoryComboBox);
             this.splitContainer1.Panel1.Controls.Add(this.NotesListBox);
@@ -96,44 +93,56 @@ namespace NoteApp.View
             this.splitContainer1.SplitterDistance = 281;
             this.splitContainer1.TabIndex = 0;
             // 
-            // DeleteNotePictureBox
+            // EditNoteButton
             // 
-            this.DeleteNotePictureBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.DeleteNotePictureBox.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.DeleteNotePictureBox.Image = global::NoteApp.View.Properties.Resources.DeleteNote;
-            this.DeleteNotePictureBox.Location = new System.Drawing.Point(75, 534);
-            this.DeleteNotePictureBox.Name = "DeleteNotePictureBox";
-            this.DeleteNotePictureBox.Size = new System.Drawing.Size(30, 30);
-            this.DeleteNotePictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.DeleteNotePictureBox.TabIndex = 9;
-            this.DeleteNotePictureBox.TabStop = false;
-            this.DeleteNotePictureBox.Click += new System.EventHandler(this.DeleteNotePictureBox_Click);
+            this.EditNoteButton.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.EditNoteButton.BackgroundImage = global::NoteApp.View.Properties.Resources.EditNote;
+            this.EditNoteButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.EditNoteButton.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.EditNoteButton.FlatAppearance.BorderSize = 0;
+            this.EditNoteButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.EditNoteButton.Location = new System.Drawing.Point(75, 529);
+            this.EditNoteButton.MaximumSize = new System.Drawing.Size(30, 35);
+            this.EditNoteButton.Name = "EditNoteButton";
+            this.EditNoteButton.Size = new System.Drawing.Size(30, 35);
+            this.EditNoteButton.TabIndex = 12;
+            this.EditNoteButton.UseVisualStyleBackColor = true;
+            this.EditNoteButton.Click += new System.EventHandler(this.EditNoteButton_Click);
             // 
-            // EditNotePictureBox
+            // DeleteNoteButton
             // 
-            this.EditNotePictureBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.EditNotePictureBox.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.EditNotePictureBox.Image = global::NoteApp.View.Properties.Resources.EditNote;
-            this.EditNotePictureBox.Location = new System.Drawing.Point(39, 534);
-            this.EditNotePictureBox.Name = "EditNotePictureBox";
-            this.EditNotePictureBox.Size = new System.Drawing.Size(30, 30);
-            this.EditNotePictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.EditNotePictureBox.TabIndex = 8;
-            this.EditNotePictureBox.TabStop = false;
-            this.EditNotePictureBox.Click += new System.EventHandler(this.EditNotePictureBox_Click);
+            this.DeleteNoteButton.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.DeleteNoteButton.BackgroundImage = global::NoteApp.View.Properties.Resources.DeleteNote;
+            this.DeleteNoteButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.DeleteNoteButton.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.DeleteNoteButton.FlatAppearance.BorderSize = 0;
+            this.DeleteNoteButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.DeleteNoteButton.Location = new System.Drawing.Point(39, 529);
+            this.DeleteNoteButton.MaximumSize = new System.Drawing.Size(30, 35);
+            this.DeleteNoteButton.Name = "DeleteNoteButton";
+            this.DeleteNoteButton.Size = new System.Drawing.Size(30, 35);
+            this.DeleteNoteButton.TabIndex = 11;
+            this.DeleteNoteButton.UseVisualStyleBackColor = true;
+            this.DeleteNoteButton.Click += new System.EventHandler(this.DeleteNoteButton_Click);
             // 
-            // AddNotePictureBox
+            // AddNoteButton
             // 
-            this.AddNotePictureBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.AddNotePictureBox.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.AddNotePictureBox.Image = global::NoteApp.View.Properties.Resources.AddNote;
-            this.AddNotePictureBox.Location = new System.Drawing.Point(3, 534);
-            this.AddNotePictureBox.Name = "AddNotePictureBox";
-            this.AddNotePictureBox.Size = new System.Drawing.Size(30, 30);
-            this.AddNotePictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.AddNotePictureBox.TabIndex = 3;
-            this.AddNotePictureBox.TabStop = false;
-            this.AddNotePictureBox.Click += new System.EventHandler(this.AddNotePictureBox_Click);
+            this.AddNoteButton.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.AddNoteButton.BackgroundImage = global::NoteApp.View.Properties.Resources.AddNote;
+            this.AddNoteButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.AddNoteButton.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.AddNoteButton.FlatAppearance.BorderSize = 0;
+            this.AddNoteButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.AddNoteButton.Location = new System.Drawing.Point(3, 529);
+            this.AddNoteButton.MaximumSize = new System.Drawing.Size(30, 35);
+            this.AddNoteButton.Name = "AddNoteButton";
+            this.AddNoteButton.Size = new System.Drawing.Size(30, 35);
+            this.AddNoteButton.TabIndex = 10;
+            this.AddNoteButton.UseVisualStyleBackColor = true;
+            this.AddNoteButton.Click += new System.EventHandler(this.AddNoteButton_Click);
             // 
             // LabelCategoryShow
             // 
@@ -176,13 +185,13 @@ namespace NoteApp.View
             this.NotesListBox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.NotesListBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.NotesListBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.NotesListBox.FormattingEnabled = true;
             this.NotesListBox.IntegralHeight = false;
-            this.NotesListBox.ItemHeight = 16;
+            this.NotesListBox.ItemHeight = 20;
             this.NotesListBox.Location = new System.Drawing.Point(3, 33);
             this.NotesListBox.Name = "NotesListBox";
-            this.NotesListBox.Size = new System.Drawing.Size(275, 500);
+            this.NotesListBox.Size = new System.Drawing.Size(275, 490);
             this.NotesListBox.TabIndex = 0;
             this.NotesListBox.SelectedIndexChanged += new System.EventHandler(this.NotesListBox_SelectedIndexChanged);
             // 
@@ -197,7 +206,7 @@ namespace NoteApp.View
             this.TextBoxNoteText.Name = "TextBoxNoteText";
             this.TextBoxNoteText.ReadOnly = true;
             this.TextBoxNoteText.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.TextBoxNoteText.Size = new System.Drawing.Size(553, 485);
+            this.TextBoxNoteText.Size = new System.Drawing.Size(553, 472);
             this.TextBoxNoteText.TabIndex = 7;
             // 
             // NoteDateModify
@@ -291,22 +300,23 @@ namespace NoteApp.View
             this.LabelNoteName.TabIndex = 0;
             this.LabelNoteName.Text = "NoteName";
             // 
-            // menuStrip1
+            // menuStrip
             // 
-            this.menuStrip1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.menuStrip.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.menuStrip1.Dock = System.Windows.Forms.DockStyle.None;
-            this.menuStrip1.Font = new System.Drawing.Font("Segoe UI", 10F);
-            this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.menuStrip.BackColor = System.Drawing.SystemColors.ControlLightLight;
+            this.menuStrip.Dock = System.Windows.Forms.DockStyle.None;
+            this.menuStrip.Font = new System.Drawing.Font("Segoe UI", 10F);
+            this.menuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.FileToolStripMenuItem,
             this.EditToolStripMenuItem,
             this.HelpToolStripMenuItem1});
-            this.menuStrip1.Location = new System.Drawing.Point(0, 0);
-            this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(142, 27);
-            this.menuStrip1.TabIndex = 2;
-            this.menuStrip1.Text = "menuStrip1";
+            this.menuStrip.Location = new System.Drawing.Point(0, 0);
+            this.menuStrip.Name = "menuStrip";
+            this.menuStrip.Size = new System.Drawing.Size(142, 27);
+            this.menuStrip.TabIndex = 2;
+            this.menuStrip.Text = "menuStrip1";
             // 
             // FileToolStripMenuItem
             // 
@@ -367,7 +377,7 @@ namespace NoteApp.View
             // 
             this.AboutToolStripMenuItem.Name = "AboutToolStripMenuItem";
             this.AboutToolStripMenuItem.ShortcutKeys = System.Windows.Forms.Keys.F1;
-            this.AboutToolStripMenuItem.Size = new System.Drawing.Size(140, 24);
+            this.AboutToolStripMenuItem.Size = new System.Drawing.Size(180, 24);
             this.AboutToolStripMenuItem.Text = "About";
             this.AboutToolStripMenuItem.Click += new System.EventHandler(this.AboutToolStripMenuItem_Click);
             // 
@@ -375,11 +385,12 @@ namespace NoteApp.View
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.SystemColors.ControlLightLight;
             this.ClientSize = new System.Drawing.Size(866, 599);
-            this.Controls.Add(this.menuStrip1);
+            this.Controls.Add(this.menuStrip);
             this.Controls.Add(this.splitContainer1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.MainMenuStrip = this.menuStrip1;
+            this.MainMenuStrip = this.menuStrip;
             this.MinimumSize = new System.Drawing.Size(882, 638);
             this.Name = "MainForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
@@ -390,11 +401,8 @@ namespace NoteApp.View
             this.splitContainer1.Panel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
             this.splitContainer1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.DeleteNotePictureBox)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.EditNotePictureBox)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.AddNotePictureBox)).EndInit();
-            this.menuStrip1.ResumeLayout(false);
-            this.menuStrip1.PerformLayout();
+            this.menuStrip.ResumeLayout(false);
+            this.menuStrip.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -412,7 +420,7 @@ namespace NoteApp.View
         private System.Windows.Forms.Label LabelNoteName;
         private System.Windows.Forms.DateTimePicker NoteDateModify;
         private System.Windows.Forms.DateTimePicker NoteDateCreate;
-        private System.Windows.Forms.MenuStrip menuStrip1;
+        private System.Windows.Forms.MenuStrip menuStrip;
         private System.Windows.Forms.ToolStripMenuItem FileToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem ExitToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem EditToolStripMenuItem;
@@ -423,9 +431,9 @@ namespace NoteApp.View
         private System.Windows.Forms.ToolStripMenuItem AboutToolStripMenuItem;
         private System.Windows.Forms.TextBox TextBoxNoteText;
         private System.Windows.Forms.ListBox NotesListBox;
-        private System.Windows.Forms.PictureBox AddNotePictureBox;
-        private System.Windows.Forms.PictureBox DeleteNotePictureBox;
-        private System.Windows.Forms.PictureBox EditNotePictureBox;
+        private System.Windows.Forms.Button EditNoteButton;
+        private System.Windows.Forms.Button DeleteNoteButton;
+        private System.Windows.Forms.Button AddNoteButton;
     }
 }
 
