@@ -203,6 +203,11 @@ namespace NoteApp.View
 
         }
 
+        /// <summary>
+        /// Обработка закрытия главного окна любым способом
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
         {
             DialogResult dialogResult = MessageBox.Show("Вы точно хотите закрыть программу?",
