@@ -9,33 +9,70 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.IO;
 using System.Text.RegularExpressions;
+using NoteApp.Model;
 
 
 namespace NoteApp.View
 {
     public partial class NoteForm : Form
     {
+        /// <summary>
+        /// Объект типа Note, хранящий в себе данные
+        /// </summary>
+        private Note _object = new Note("MyNoteTitle",NoteCategoryEnum.Miscs,"Hello, world!");
+
+        /// <summary>
+        /// Текстовая переменная, уведомляющая о наличии ошибок
+        /// </summary>
+        private string _noteTitleError = "";
+
+        /// <summary>
+        /// Конструктор формы
+        /// </summary>
         public NoteForm()
         {
             InitializeComponent();
-            ComboBoxNoteCategory.SelectedIndex = 0;
+            ComboBoxNoteCategory.DataSource = Enum.GetValues(typeof(NoteCategoryEnum));
+            UpdateForm();
         }
 
-        string globalPath;                                                          //Путь до текстового файла
-        string firstName;                                                           //Итоговое название заметки
-
-        public NoteForm(string path)
+        /// <summary>
+        /// Обновляет все элементы управления по данным из объекта
+        /// </summary>
+        private void UpdateForm()
         {
-            InitializeComponent();
-            string[] names = path.Split('\\');
-            ComboBoxNoteCategory.SelectedItem = names[names.Length - 2];            //Категория заметки
-            ComboBoxNoteCategory.Enabled = false;
-            TextBoxNoteTitle.Text = names[names.Length - 1].Replace(".txt", "");    //Название заметки
-            NoteDateCreate.Value = File.GetCreationTime(path);                      //Дата создания заметки
-            NoteDateModify.Value = File.GetLastWriteTime(path);                     //Дата модификации заметки
-            TextBoxNoteText.Text = File.ReadAllText(path);                          //Текст заметки
-            globalPath = path;                                                      //Путь до текстового файла
-            firstName = TextBoxNoteTitle.Text;  
+            ComboBoxNoteCategory.SelectedItem = _object.NoteCategory;
+            TextBoxNoteTitle.Text = _object.NoteTitle;   
+            NoteDateCreate.Value = _object.CreationTime;
+            NoteDateModify.Value = _object.LastModificationTime;
+            TextBoxNoteText.Text = _object.NoteText;
+        }
+
+        /// <summary>
+        /// Проверка формы на наличие ошибок
+        /// </summary>
+        /// <returns></returns>
+        private bool CheckFormOnErrors()
+        {
+            if (_noteTitleError != "")
+            {
+                MessageBox.Show(_noteTitleError);
+                return false;
+            }
+            else
+            {
+                return true;
+            }
+        }
+
+        /// <summary>
+        /// Обновляет данные в объекте с элементов пользовательского интерфейса
+        /// </summary>
+        private void UpdateObject()
+        {
+            _object.NoteCategory = (NoteCategoryEnum)ComboBoxNoteCategory.SelectedItem;
+            _object.NoteTitle = TextBoxNoteTitle.Text;
+            _object.NoteText = TextBoxNoteText.Text;
         }
 
         /// <summary>
@@ -55,42 +92,42 @@ namespace NoteApp.View
         /// <param name="e"></param>
         private void ButtonOK_Click(object sender, EventArgs e)
         {
-            if (TextBoxNoteTitle.Text == "")
-            {
-                MessageBox.Show("Введите имя заметки");
-                return;
-            }
-            string category = (string)ComboBoxNoteCategory.SelectedItem;
-            string name = TextBoxNoteTitle.Text;
-            Regex regex = new Regex(@"[<>:/|?*\\]"); 
-            if ((regex.Match(name).Success)||(name.Contains("\"")))
-            {
-                MessageBox.Show("Имя файла не должно содержать следующих знаков: \\ / : * ? \" < > |");
-                return;
-            }
+            CheckFormOnErrors();
+            UpdateObject();
+        }
+
+        /// <summary>
+        /// Обработчик события при изменении текста в TextBox названия заметки
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void TextBoxNoteTitle_TextChanged(object sender, EventArgs e)
+        {
             try
             {
-                string filePath = Directory.GetCurrentDirectory() + "\\AllNotes\\"
-                    + category + "\\" + name + ".txt";
-                string text = TextBoxNoteText.Text;
-                // открываем файл (стираем содержимое файла)
-                FileStream fileStream = File.Open(filePath, FileMode.Create);
-                // получаем поток
-                StreamWriter output = new StreamWriter(fileStream);
-                // записываем текст в поток
-                output.Write(text);
-                // закрываем поток
-                output.Close();
-                if ((firstName != name) && (globalPath != null))
-                {
-                    File.Delete(globalPath);
-                    globalPath = null;
-                }
-                Close();
+                _object.NoteTitle = TextBoxNoteTitle.Text;
+                _noteTitleError = "";
+                TextBoxNoteTitle.BackColor = Color.White;
             }
-            catch
+            catch (ArgumentException exeption)
             {
+                _noteTitleError = exeption.Message;
+                TextBoxNoteTitle.BackColor = Color.LightPink;
+            }
+        }
 
+        /// <summary>
+        /// Обработка закрытия формы любым способом
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void NoteForm_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            DialogResult dialogResult = MessageBox.Show("Вы точно хотите закрыть окно?",
+                "Предупреждение", MessageBoxButtons.YesNo);
+            if (dialogResult == DialogResult.No)
+            {
+                e.Cancel = true;
             }
         }
     }
