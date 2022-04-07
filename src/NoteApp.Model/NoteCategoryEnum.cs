@@ -9,7 +9,7 @@ namespace NoteApp.Model
     /// <summary>
     /// Описывает категорию заметок
     /// </summary>
-    public enum NoteCategoryEnum
+    public enum NoteCategory
     {
         /// <summary>
         /// Категория "Документы"
@@ -32,11 +32,6 @@ namespace NoteApp.Model
         Home,
 
         /// <summary>
-        /// Категория "Разное"
-        /// </summary>
-        Miscs,
-
-        /// <summary>
         /// Категория "Люди"
         /// </summary>
         People,
@@ -44,6 +39,11 @@ namespace NoteApp.Model
         /// <summary>
         /// Категория "Работа"
         /// </summary>
-        Work
+        Work,
+
+        /// <summary>
+        /// Категория "Разное"
+        /// </summary>
+        Miscs
     }
 }

@@ -14,8 +14,14 @@ namespace NoteApp.View
 {
     public partial class MainForm : Form
     {
+        /// <summary>
+        /// Объект типа Project, хранящий в себе данные обо всех заметках
+        /// </summary>
         private Project _project = new Project();
 
+        /// <summary>
+        /// Конструктор формы
+        /// </summary>
         public MainForm()
         {
             InitializeComponent();

@@ -14,11 +14,14 @@ namespace NoteApp.Model
         /// <summary>
         /// Список всех заметок, созданных в приложении
         /// </summary>
-        public List<Note> Notes { get; set; } = new List<Note>();
+        public List<Note> Notes { get; set; }
 
+        /// <summary>
+        /// Конструктор класса
+        /// </summary>
         public Project()
         {
-
+            Notes = new List<Note>();
         }
     }
 

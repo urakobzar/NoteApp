@@ -126,6 +126,7 @@ namespace NoteApp.View
             this.TextBoxNoteText.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.TextBoxNoteText.BackColor = System.Drawing.SystemColors.ControlLightLight;
             this.TextBoxNoteText.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.TextBoxNoteText.Location = new System.Drawing.Point(12, 95);
             this.TextBoxNoteText.Multiline = true;
@@ -139,6 +140,7 @@ namespace NoteApp.View
             this.ComboBoxNoteCategory.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.ComboBoxNoteCategory.BackColor = System.Drawing.SystemColors.ControlLightLight;
             this.ComboBoxNoteCategory.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.ComboBoxNoteCategory.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.ComboBoxNoteCategory.FormattingEnabled = true;
@@ -166,6 +168,7 @@ namespace NoteApp.View
             this.TextBoxNoteTitle.Name = "TextBoxNoteTitle";
             this.TextBoxNoteTitle.Size = new System.Drawing.Size(597, 23);
             this.TextBoxNoteTitle.TabIndex = 17;
+            this.TextBoxNoteTitle.TextChanged += new System.EventHandler(this.TextBoxNoteTitle_TextChanged);
             // 
             // ButtonOK
             // 
@@ -216,6 +219,7 @@ namespace NoteApp.View
             this.ShowIcon = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Add/Edit Note";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.NoteForm_FormClosing);
             this.ResumeLayout(false);
             this.PerformLayout();
 

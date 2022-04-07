@@ -14,17 +14,17 @@ namespace NoteApp.Model
         /// <summary>
         /// Название заметки
         /// </summary>
-        private string _noteTitle = "Без названия";
+        private string _title = "Untitled";
 
         /// <summary>
         /// Категория заметки
         /// </summary>
-        private NoteCategoryEnum _noteCategory;
+        private NoteCategory _noteCategory;
 
         /// <summary>
         /// Текст заметки
         /// </summary>
-        private string _noteText;
+        private string _text;
 
         /// <summary>
         /// Время создания
@@ -39,20 +39,20 @@ namespace NoteApp.Model
         /// <summary>
         /// Возвращает или задает название заметки
         /// </summary>
-        public string NoteTitle
+        public string Title
         {
             get
             {
-                return _noteTitle;
+                return _title;
             }
             set
             {
                 if (value.Length > 50)
                 {
-                    throw new ArgumentException($"Title must be less than 50 characters." 
-                    + $"But was {value.Length}");
+                    throw new ArgumentException(
+                        "Title must be less than 50 characters. But was: " + value.Length);
                 }
-                _noteTitle = value;
+                _title = value;
                 LastModificationTime = DateTime.Now;
             }
         }
@@ -60,7 +60,7 @@ namespace NoteApp.Model
         /// <summary>
         /// Возвращает или задает категорию заметки
         /// </summary>
-        public NoteCategoryEnum NoteCategory
+        public NoteCategory @NoteCategory
         {
             get
             {
@@ -76,15 +76,15 @@ namespace NoteApp.Model
         /// <summary>
         /// Возвращает или задает текст заметки
         /// </summary>
-        public string NoteText
+        public string Text
         {
             get
             {
-                return _noteText;
+                return _text;
             }
             set
             {
-                _noteText = value;
+                _text = value;
                 LastModificationTime = DateTime.Now;
             }
         }
@@ -121,17 +121,13 @@ namespace NoteApp.Model
         /// <param name="noteTitle">Название заметки</param>
         /// <param name="noteCategory">Категория заметки</param>
         /// <param name="noteText">Текст заметки</param>
-        public Note(string noteTitle, NoteCategoryEnum noteCategory, string noteText)
+        public Note(string title, NoteCategory noteCategory, string text)
         {
-            NoteTitle = noteTitle;
-            NoteCategory = noteCategory;
-            NoteText = noteText;
+            Title = title;
+            @NoteCategory = noteCategory;
+            Text = text;
         }
 
-        public Note()
-        {
-
-        }
 
         /// <summary>
         /// Глубокое копирование заметки
@@ -139,7 +135,7 @@ namespace NoteApp.Model
         /// <returns></returns>
         public object Clone()
         {
-            return new Note(NoteTitle, NoteCategory, NoteText);
+            return new Note(Title, @NoteCategory, Text);
         }
     }
 }
