@@ -37,6 +37,9 @@
     <ApplicationIcon>NoteIco.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="NoteApp.Model">
+      <HintPath>..\NoteApp.Model\bin\Debug\NoteApp.Model.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
