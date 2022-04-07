@@ -9,7 +9,7 @@ namespace NoteApp.Model
     /// <summary>
     /// Описывает заметку
     /// </summary>
-    class Note : ICloneable
+    public class Note : ICloneable
     {
         /// <summary>
         /// Название заметки
@@ -126,6 +126,11 @@ namespace NoteApp.Model
             NoteTitle = noteTitle;
             NoteCategory = noteCategory;
             NoteText = noteText;
+        }
+
+        public Note()
+        {
+
         }
 
         /// <summary>

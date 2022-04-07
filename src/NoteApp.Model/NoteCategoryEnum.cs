@@ -9,7 +9,7 @@ namespace NoteApp.Model
     /// <summary>
     /// Описывает категорию заметок
     /// </summary>
-    enum NoteCategoryEnum
+    public enum NoteCategoryEnum
     {
         /// <summary>
         /// Категория "Документы"

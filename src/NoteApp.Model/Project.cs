@@ -9,11 +9,17 @@ namespace NoteApp.Model
     /// <summary>
     /// Описывает проект
     /// </summary>
-    class Project
+    public class Project
     {
         /// <summary>
         /// Список всех заметок, созданных в приложении
         /// </summary>
         public List<Note> Notes { get; set; } = new List<Note>();
+
+        public Project()
+        {
+
+        }
     }
+
 }
