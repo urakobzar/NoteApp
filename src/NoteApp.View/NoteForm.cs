@@ -17,9 +17,19 @@ namespace NoteApp.View
     public partial class NoteForm : Form
     {
         /// <summary>
+        /// Цвет корректного ввода данных
+        /// </summary>
+        private readonly Color _correctColor = Color.White;
+
+        /// <summary>
+        /// Цвет ошибочного ввода данных
+        /// </summary>
+        private readonly Color _errorColor = Color.LightPink;
+
+        /// <summary>
         /// Объект типа Note, хранящий в себе данные
         /// </summary>
-        private Note _object = new Note("MyNoteTitle",NoteCategoryEnum.Miscs,"Hello, world!");
+        private Note _note = new Note("MyNoteTitle", NoteCategory.Miscs, "Hello, world!");
 
         /// <summary>
         /// Текстовая переменная, уведомляющая о наличии ошибок
@@ -32,7 +42,7 @@ namespace NoteApp.View
         public NoteForm()
         {
             InitializeComponent();
-            ComboBoxNoteCategory.DataSource = Enum.GetValues(typeof(NoteCategoryEnum));
+            ComboBoxNoteCategory.DataSource = Enum.GetValues(typeof(NoteCategory));
             UpdateForm();
         }
 
@@ -41,11 +51,11 @@ namespace NoteApp.View
         /// </summary>
         private void UpdateForm()
         {
-            ComboBoxNoteCategory.SelectedItem = _object.NoteCategory;
-            TextBoxNoteTitle.Text = _object.NoteTitle;   
-            NoteDateCreate.Value = _object.CreationTime;
-            NoteDateModify.Value = _object.LastModificationTime;
-            TextBoxNoteText.Text = _object.NoteText;
+            ComboBoxNoteCategory.SelectedItem = _note.NoteCategory;
+            TextBoxNoteTitle.Text = _note.Title;
+            NoteDateCreate.Value = _note.CreationTime;
+            NoteDateModify.Value = _note.LastModificationTime;
+            TextBoxNoteText.Text = _note.Text;
         }
 
         /// <summary>
@@ -70,9 +80,9 @@ namespace NoteApp.View
         /// </summary>
         private void UpdateObject()
         {
-            _object.NoteCategory = (NoteCategoryEnum)ComboBoxNoteCategory.SelectedItem;
-            _object.NoteTitle = TextBoxNoteTitle.Text;
-            _object.NoteText = TextBoxNoteText.Text;
+            _note.NoteCategory = (NoteCategory)ComboBoxNoteCategory.SelectedItem;
+            _note.Title = TextBoxNoteTitle.Text;
+            _note.Text = TextBoxNoteText.Text;
         }
 
         /// <summary>
@@ -105,14 +115,14 @@ namespace NoteApp.View
         {
             try
             {
-                _object.NoteTitle = TextBoxNoteTitle.Text;
+                _note.Title = TextBoxNoteTitle.Text;
                 _noteTitleError = "";
-                TextBoxNoteTitle.BackColor = Color.White;
+                TextBoxNoteTitle.BackColor = _correctColor;
             }
-            catch (ArgumentException exeption)
+            catch (ArgumentException exception)
             {
-                _noteTitleError = exeption.Message;
-                TextBoxNoteTitle.BackColor = Color.LightPink;
+                _noteTitleError = exception.Message;
+                TextBoxNoteTitle.BackColor = _errorColor;
             }
         }
 
@@ -123,8 +133,8 @@ namespace NoteApp.View
         /// <param name="e"></param>
         private void NoteForm_FormClosing(object sender, FormClosingEventArgs e)
         {
-            DialogResult dialogResult = MessageBox.Show("Вы точно хотите закрыть окно?",
-                "Предупреждение", MessageBoxButtons.YesNo);
+            DialogResult dialogResult = MessageBox.Show("Are you sure you want to close " +
+                "the program?", "A warning", MessageBoxButtons.YesNo);
             if (dialogResult == DialogResult.No)
             {
                 e.Cancel = true;

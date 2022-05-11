@@ -37,7 +37,7 @@ namespace NoteApp.View
             NotesListBox.Items.Clear();
             for (int i = 0; i < _project.Notes.Count; i++)
             {
-                NotesListBox.Items.Add(_project.Notes[i].NoteTitle);
+                NotesListBox.Items.Add(_project.Notes[i].Title);
             }
         }
 
@@ -47,17 +47,19 @@ namespace NoteApp.View
         private void AddNote()
         {
             string[] testNoteTitle = { "Test1", "Test2", "Test3", "Test4", "Test5" };
-            string[] testNoteText = { "Hello", "Bye", "Good morning", "Good afternoon", "Good evening", "Good night" };
-            NoteCategoryEnum randomNoteCategoryEnum;
+            string[] testNoteText = { "Hello", "Bye", "Good morning", "Good afternoon",
+                                        "Good evening", "Good night" };
             Random random = new Random();
-            string randomNoteTitle;
-            string randomNoteText;
             for (int i = 0; i < 5; i++)
             {
-                randomNoteCategoryEnum = (NoteCategoryEnum)random.Next(0, 6);
-                randomNoteTitle = testNoteTitle[random.Next(0, testNoteTitle.Length - 1)];
-                randomNoteText = testNoteText[random.Next(0, testNoteTitle.Length - 1)];
-                _project.Notes.Add(new Note(randomNoteTitle, randomNoteCategoryEnum, randomNoteText));
+                int enumIndex = random.Next(0, 6);
+                int titleIndex = random.Next(0, testNoteTitle.Length - 1);
+                int textIndex = random.Next(0, testNoteText.Length - 1);
+                NoteCategory randomNoteCategoryEnum = (NoteCategory)enumIndex;
+                string randomNoteTitle = testNoteTitle[titleIndex];
+                string randomNoteText = testNoteText[textIndex];
+                _project.Notes.Add(new Note(randomNoteTitle, randomNoteCategoryEnum, 
+                    randomNoteText));
             }
         }
         
@@ -71,8 +73,9 @@ namespace NoteApp.View
             {
                 return;
             }
-            DialogResult dialogResult = MessageBox.Show("Вы точно хотите удалить заметку: \""
-                + NotesListBox.SelectedItem.ToString() + "\"", "Предупреждение", MessageBoxButtons.YesNo);
+            DialogResult dialogResult = MessageBox.Show("You definitely want to delete the note:\""
+                + NotesListBox.SelectedItem.ToString() + "\"", "A warning", 
+                MessageBoxButtons.YesNo);
             if (dialogResult == DialogResult.Yes)
             {
                 _project.Notes.RemoveAt(index);
@@ -86,13 +89,14 @@ namespace NoteApp.View
         /// <param name="index"></param>
         private void UpdateSelectedNote(int index)
         {
-            TextBoxNoteText.Text = _project.Notes[index].NoteText;
-            LabelSelectedCategoryNote.Text = _project.Notes[index].NoteCategory.ToString();
-            LabelNoteName.Text = _project.Notes[index].NoteTitle;
+            Note note = _project.Notes[index];
+            TextBoxNoteText.Text = note.Text;
+            LabelSelectedCategoryNote.Text = note.NoteCategory.ToString();
+            LabelNoteName.Text = note.Title;
             NoteDateCreate.Visible = true;
             NoteDateModify.Visible = true;
-            NoteDateCreate.Value = _project.Notes[index].CreationTime;
-            NoteDateModify.Value = _project.Notes[index].LastModificationTime;
+            NoteDateCreate.Value = note.CreationTime;
+            NoteDateModify.Value = note.LastModificationTime;
         }
 
         /// <summary>
@@ -152,7 +156,8 @@ namespace NoteApp.View
         /// <param name="e"></param>
         private void EditNoteToolStripMenuItem_Click(object sender, EventArgs e)
         {
-           
+           //TO DO: Реализация редактирования заметки. 
+           // Добавится в дальнейшем этапе разработки
         }
 
         /// <summary>
@@ -206,7 +211,8 @@ namespace NoteApp.View
         /// <param name="e"></param>
         private void EditNoteButton_Click(object sender, EventArgs e)
         {
-
+            //TO DO: Реализация редактирования заметки. 
+            // Добавится в дальнейшем этапе разработки
         }
 
         /// <summary>
@@ -216,8 +222,8 @@ namespace NoteApp.View
         /// <param name="e"></param>
         private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
         {
-            DialogResult dialogResult = MessageBox.Show("Вы точно хотите закрыть программу?",
-                "Предупреждение", MessageBoxButtons.YesNo);
+            DialogResult dialogResult = MessageBox.Show("Are you sure you want to close " + 
+                "the program?", "A warning", MessageBoxButtons.YesNo);
             if (dialogResult == DialogResult.No)
             {
                 e.Cancel = true;
