@@ -34,7 +34,7 @@ namespace NoteApp.Model
         /// <summary>
         /// Время последнего изменения
         /// </summary>
-        private DateTime _lastModificationTime;
+        private DateTime _lastModificationTime = DateTime.Now;
 
         /// <summary>
         /// Возвращает или задает название заметки
@@ -128,6 +128,13 @@ namespace NoteApp.Model
             Text = text;
         }
 
+        /// <summary>
+        ///  Создает пустой экземпляр <see cref="Note">. 
+        /// </summary>
+        public Note()
+        {
+
+        }
 
         /// <summary>
         /// Глубокое копирование заметки
