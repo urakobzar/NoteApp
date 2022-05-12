@@ -36,15 +36,15 @@ namespace NoteApp.View
         {
             NotesListBox.Items.Clear();
             for (int i = 0; i < _project.Notes.Count; i++)
-            {
-                NotesListBox.Items.Add(_project.Notes[i].Title);
-            }
+            { 
+                NotesListBox.Items.Add(_project.Notes[i].Title);  
+            }  
         }
 
         /// <summary>
-        /// Добавляет заметку
+        /// Добавление случайно созданных заметок
         /// </summary>
-        private void AddNote()
+        private void AddRandomNotes()
         {
             string[] testNoteTitle = { "Test1", "Test2", "Test3", "Test4", "Test5" };
             string[] testNoteText = { "Hello", "Bye", "Good morning", "Good afternoon",
@@ -58,15 +58,28 @@ namespace NoteApp.View
                 NoteCategory randomNoteCategoryEnum = (NoteCategory)enumIndex;
                 string randomNoteTitle = testNoteTitle[titleIndex];
                 string randomNoteText = testNoteText[textIndex];
-                _project.Notes.Add(new Note(randomNoteTitle, randomNoteCategoryEnum, 
+                _project.Notes.Add(new Note(randomNoteTitle, randomNoteCategoryEnum,
                     randomNoteText));
             }
         }
-        
+
+        /// <summary>
+        /// Добавляет заметку
+        /// </summary>
+        private void AddNote()
+        {
+            NoteForm noteForm = new NoteForm();
+            noteForm.ShowDialog();
+            if (noteForm.Note!=null)
+            {
+                _project.Notes.Add(noteForm.Note);
+            }
+        }
+
         /// <summary>
         /// Удаляет выбранную заметку
         /// </summary>
-        /// <param name="index"></param>
+        /// <param name="index">Текущая выбранная заметка</param>
         private void RemoveNote(int index)
         {
             if (index == -1)
@@ -84,12 +97,35 @@ namespace NoteApp.View
         }
 
         /// <summary>
+        /// Редактирует выбранную заметку
+        /// </summary>
+        /// <param name="index">Текущая выбранная заметка</param>
+        private void EditNote(int index)
+        {
+            if (index == -1)
+            {
+                return;
+            }
+            NoteForm noteForm = new NoteForm();
+            noteForm.Note = _project.Notes[index];
+            noteForm.ShowDialog();
+            if (noteForm.Note != null)
+            {
+                _project.Notes[index] = noteForm.Note;
+            }
+        }
+
+        /// <summary>
         /// Отображает данные выбранной заметки
         /// </summary>
         /// <param name="index"></param>
         private void UpdateSelectedNote(int index)
         {
-            Note note = _project.Notes[index];
+            if (index == -1)
+            {
+                return;
+            }
+            Note note = _project.Notes[index]; 
             TextBoxNoteText.Text = note.Text;
             LabelSelectedCategoryNote.Text = note.NoteCategory.ToString();
             LabelNoteName.Text = note.Title;
@@ -156,8 +192,11 @@ namespace NoteApp.View
         /// <param name="e"></param>
         private void EditNoteToolStripMenuItem_Click(object sender, EventArgs e)
         {
-           //TO DO: Реализация редактирования заметки. 
-           // Добавится в дальнейшем этапе разработки
+            int index = NotesListBox.SelectedIndex;
+            EditNote(index);
+            UpdateSelectedNote(index);
+            UpdateListBox();
+            NotesListBox.SelectedIndex = index;
         }
 
         /// <summary>
@@ -211,8 +250,11 @@ namespace NoteApp.View
         /// <param name="e"></param>
         private void EditNoteButton_Click(object sender, EventArgs e)
         {
-            //TO DO: Реализация редактирования заметки. 
-            // Добавится в дальнейшем этапе разработки
+            int index = NotesListBox.SelectedIndex;
+            EditNote(index);
+            UpdateSelectedNote(index);
+            UpdateListBox();
+            NotesListBox.SelectedIndex = index;
         }
 
         /// <summary>
@@ -228,6 +270,17 @@ namespace NoteApp.View
             {
                 e.Cancel = true;
             }
+        }
+
+        /// <summary>
+        /// Добавляет случайно созданные заметки для тестирования программы
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void AddRandomNotesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            AddRandomNotes();
+            UpdateListBox();
         }
     }
 }
