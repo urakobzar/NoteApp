@@ -20,6 +20,11 @@ namespace NoteApp.View
         private Project _project = new Project();
 
         /// <summary>
+        /// Список отображаемых заметок на экране
+        /// </summary>
+        List <Note> _currentNotes;
+
+        /// <summary>
         /// Конструктор формы
         /// </summary>
         public MainForm()
@@ -30,15 +35,51 @@ namespace NoteApp.View
         }
 
         /// <summary>
+        /// Поиск индекса в 
+        /// </summary>
+        /// <param name="index">Индекс элемента по ListBox по _currentNotes</param>
+        /// <returns></returns>
+        private int FindProjectIndex(int index)
+        {
+            for (int i = 0; i < _project.Notes.Count; i++)
+            {
+                if (_project.Notes[i] == _currentNotes[index])
+                {
+                    index = i;
+                    break;
+                }
+            }
+            return index;
+        }
+
+        /// <summary>
+        /// Сортировка по выбранной категории заметки
+        /// </summary>
+        private void SortByCategory()
+        {
+            if (CategoryComboBox.SelectedItem.ToString() != "All")
+            {
+                NoteCategory noteCategory = (NoteCategory)Enum.Parse(typeof(NoteCategory), 
+                    CategoryComboBox.SelectedItem.ToString());
+                _currentNotes = _project.SearchByCategory(_project.Notes, noteCategory);
+            }
+            else
+            {
+                _currentNotes = _project.SortByModificationTime(_project.Notes);                
+            }
+        }
+
+        /// <summary>
         /// Обновляет перечень заметок в ListBox
         /// </summary>
         private void UpdateListBox()
         {
             NotesListBox.Items.Clear();
-            for (int i = 0; i < _project.Notes.Count; i++)
-            { 
-                NotesListBox.Items.Add(_project.Notes[i].Title);  
-            }  
+            _currentNotes = _project.SortByModificationTime(_currentNotes);
+            for (int i = 0; i < _currentNotes.Count; i++)
+            {
+                NotesListBox.Items.Add(_currentNotes[i].Title);
+            } 
         }
 
         /// <summary>
@@ -50,9 +91,9 @@ namespace NoteApp.View
             string[] testNoteText = { "Hello", "Bye", "Good morning", "Good afternoon",
                                         "Good evening", "Good night" };
             Random random = new Random();
-            for (int i = 0; i < 5; i++)
+            for (int i = 0; i < 10; i++)
             {
-                int enumIndex = random.Next(0, 6);
+                int enumIndex = random.Next(0, 7);
                 int titleIndex = random.Next(0, testNoteTitle.Length - 1);
                 int textIndex = random.Next(0, testNoteText.Length - 1);
                 NoteCategory randomNoteCategoryEnum = (NoteCategory)enumIndex;
@@ -86,6 +127,7 @@ namespace NoteApp.View
             {
                 return;
             }
+            index = FindProjectIndex(index);
             DialogResult dialogResult = MessageBox.Show("You definitely want to delete the note:\""
                 + NotesListBox.SelectedItem.ToString() + "\"", "A warning", 
                 MessageBoxButtons.YesNo);
@@ -106,6 +148,7 @@ namespace NoteApp.View
             {
                 return;
             }
+            index = FindProjectIndex(index);
             NoteForm noteForm = new NoteForm();
             noteForm.Note = _project.Notes[index];
             noteForm.ShowDialog();
@@ -125,7 +168,7 @@ namespace NoteApp.View
             {
                 return;
             }
-            Note note = _project.Notes[index]; 
+            Note note = _currentNotes[index]; 
             TextBoxNoteText.Text = note.Text;
             LabelSelectedCategoryNote.Text = note.NoteCategory.ToString();
             LabelNoteName.Text = note.Title;
@@ -181,7 +224,8 @@ namespace NoteApp.View
         /// <param name="e"></param>
         private void AddNoteToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            AddNote();
+            AddNote(); 
+            SortByCategory();
             UpdateListBox();
         }
 
@@ -192,11 +236,10 @@ namespace NoteApp.View
         /// <param name="e"></param>
         private void EditNoteToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            int index = NotesListBox.SelectedIndex;
-            EditNote(index);
-            UpdateSelectedNote(index);
+            EditNote(NotesListBox.SelectedIndex);
+            SortByCategory();
+            UpdateSelectedNote(NotesListBox.SelectedIndex);
             UpdateListBox();
-            NotesListBox.SelectedIndex = index;
         }
 
         /// <summary>
@@ -207,6 +250,7 @@ namespace NoteApp.View
         private void DeleteNoteToolStripMenuItem_Click(object sender, EventArgs e)
         {
             RemoveNote(NotesListBox.SelectedIndex);
+            SortByCategory();
             UpdateListBox();
         }
 
@@ -229,6 +273,7 @@ namespace NoteApp.View
         private void AddNoteButton_Click(object sender, EventArgs e)
         {
             AddNote();
+            SortByCategory();
             UpdateListBox();
         }
 
@@ -240,6 +285,7 @@ namespace NoteApp.View
         private void DeleteNoteButton_Click(object sender, EventArgs e)
         {
             RemoveNote(NotesListBox.SelectedIndex);
+            SortByCategory();
             UpdateListBox();
         }
 
@@ -250,11 +296,10 @@ namespace NoteApp.View
         /// <param name="e"></param>
         private void EditNoteButton_Click(object sender, EventArgs e)
         {
-            int index = NotesListBox.SelectedIndex;
-            EditNote(index);
-            UpdateSelectedNote(index);
+            EditNote(NotesListBox.SelectedIndex);
+            SortByCategory();
+            UpdateSelectedNote(NotesListBox.SelectedIndex);
             UpdateListBox();
-            NotesListBox.SelectedIndex = index;
         }
 
         /// <summary>
@@ -280,6 +325,19 @@ namespace NoteApp.View
         private void AddRandomNotesToolStripMenuItem_Click(object sender, EventArgs e)
         {
             AddRandomNotes();
+            SortByCategory();
+            UpdateListBox();
+        }
+
+        /// <summary>
+        /// Обновляет список заметок с учетом выбранной категории
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void CategoryComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            ClearSelectedNote();
+            SortByCategory();
             UpdateListBox();
         }
     }
