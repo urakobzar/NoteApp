@@ -59,8 +59,17 @@ namespace NoteApp.View
         {
             if (CategoryComboBox.SelectedItem.ToString() != "All")
             {
-                NoteCategory noteCategory = (NoteCategory)Enum.Parse(typeof(NoteCategory), 
-                    CategoryComboBox.SelectedItem.ToString());
+                NoteCategory noteCategory;
+                if (CategoryComboBox.SelectedItem.ToString() == "Health and Sports")
+                {
+                    noteCategory = (NoteCategory)Enum.Parse(typeof(NoteCategory),
+                        "HealthAndSports");
+                }
+                else
+                {
+                    noteCategory = (NoteCategory)Enum.Parse(typeof(NoteCategory),
+                        CategoryComboBox.SelectedItem.ToString());
+                }
                 _currentNotes = _project.SearchByCategory(_project.Notes, noteCategory);
             }
             else
@@ -170,7 +179,14 @@ namespace NoteApp.View
             }
             Note note = _currentNotes[index]; 
             TextBoxNoteText.Text = note.Text;
-            LabelSelectedCategoryNote.Text = note.NoteCategory.ToString();
+            if (note.NoteCategory.ToString() == "HealthAndSports")
+            {
+                LabelSelectedCategoryNote.Text = "Health and Sports";
+            }
+            else
+            {
+                LabelSelectedCategoryNote.Text = note.NoteCategory.ToString();
+            }
             LabelNoteName.Text = note.Title;
             NoteDateCreate.Visible = true;
             NoteDateModify.Visible = true;

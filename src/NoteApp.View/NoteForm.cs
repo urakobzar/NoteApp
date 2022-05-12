@@ -68,7 +68,6 @@ namespace NoteApp.View
         public NoteForm()
         {
             InitializeComponent();
-            ComboBoxNoteCategory.DataSource = Enum.GetValues(typeof(NoteCategory));
             _isOKPressed = false;
         }
 
@@ -95,7 +94,7 @@ namespace NoteApp.View
         /// </summary>
         private void UpdateForm()
         {
-            ComboBoxNoteCategory.SelectedItem = _noteCopy.NoteCategory;
+            ComboBoxNoteCategory.SelectedItem = _noteCopy.NoteCategory.ToString();
             TextBoxNoteTitle.Text = _noteCopy.Title;
             NoteDateCreate.Value = _noteCopy.CreationTime;
             NoteDateModify.Value = _noteCopy.LastModificationTime;
@@ -124,7 +123,16 @@ namespace NoteApp.View
         /// </summary>
         private void UpdateNote()
         {
-            _noteCopy.NoteCategory = (NoteCategory)ComboBoxNoteCategory.SelectedItem;
+            if (ComboBoxNoteCategory.SelectedItem.ToString() == "Health and Sports")
+            {
+                _noteCopy.NoteCategory = (NoteCategory)Enum.Parse(typeof(NoteCategory),
+                    "HealthAndSports");
+            }
+            else
+            {
+                _noteCopy.NoteCategory = (NoteCategory)Enum.Parse(typeof(NoteCategory),
+                    ComboBoxNoteCategory.SelectedItem.ToString());
+            }
             _noteCopy.Title = TextBoxNoteTitle.Text;
             _noteCopy.Text = TextBoxNoteText.Text;
         }

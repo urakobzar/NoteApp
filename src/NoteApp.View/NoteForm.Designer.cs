@@ -149,9 +149,9 @@ namespace NoteApp.View
             "Finance",
             "Health and Sports",
             "Home",
-            "Miscs",
             "People",
-            "Work"});
+            "Work",
+            "Miscs"});
             this.ComboBoxNoteCategory.Location = new System.Drawing.Point(87, 36);
             this.ComboBoxNoteCategory.MaximumSize = new System.Drawing.Size(168, 0);
             this.ComboBoxNoteCategory.Name = "ComboBoxNoteCategory";
