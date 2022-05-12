@@ -52,9 +52,9 @@ namespace NoteApp.View
             this.AddNoteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.EditNoteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.DeleteNoteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.AddRandomNotesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.HelpToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.AboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.AddRandomNotesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -172,13 +172,14 @@ namespace NoteApp.View
             "Finance",
             "Health and Sports",
             "Home",
-            "Miscs",
             "People",
-            "Work"});
+            "Work",
+            "Miscs"});
             this.CategoryComboBox.Location = new System.Drawing.Point(110, 3);
             this.CategoryComboBox.Name = "CategoryComboBox";
             this.CategoryComboBox.Size = new System.Drawing.Size(168, 24);
             this.CategoryComboBox.TabIndex = 1;
+            this.CategoryComboBox.SelectedIndexChanged += new System.EventHandler(this.CategoryComboBox_SelectedIndexChanged);
             // 
             // NotesListBox
             // 
@@ -366,6 +367,13 @@ namespace NoteApp.View
             this.DeleteNoteToolStripMenuItem.Text = "Delete Note";
             this.DeleteNoteToolStripMenuItem.Click += new System.EventHandler(this.DeleteNoteToolStripMenuItem_Click);
             // 
+            // AddRandomNotesToolStripMenuItem
+            // 
+            this.AddRandomNotesToolStripMenuItem.Name = "AddRandomNotesToolStripMenuItem";
+            this.AddRandomNotesToolStripMenuItem.Size = new System.Drawing.Size(198, 24);
+            this.AddRandomNotesToolStripMenuItem.Text = "Add Random Notes";
+            this.AddRandomNotesToolStripMenuItem.Click += new System.EventHandler(this.AddRandomNotesToolStripMenuItem_Click);
+            // 
             // HelpToolStripMenuItem1
             // 
             this.HelpToolStripMenuItem1.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -381,13 +389,6 @@ namespace NoteApp.View
             this.AboutToolStripMenuItem.Size = new System.Drawing.Size(140, 24);
             this.AboutToolStripMenuItem.Text = "About";
             this.AboutToolStripMenuItem.Click += new System.EventHandler(this.AboutToolStripMenuItem_Click);
-            // 
-            // AddRandomNotesToolStripMenuItem
-            // 
-            this.AddRandomNotesToolStripMenuItem.Name = "AddRandomNotesToolStripMenuItem";
-            this.AddRandomNotesToolStripMenuItem.Size = new System.Drawing.Size(198, 24);
-            this.AddRandomNotesToolStripMenuItem.Text = "Add Random Notes";
-            this.AddRandomNotesToolStripMenuItem.Click += new System.EventHandler(this.AddRandomNotesToolStripMenuItem_Click);
             // 
             // MainForm
             // 

@@ -11,7 +11,6 @@ using System.IO;
 using System.Text.RegularExpressions;
 using NoteApp.Model;
 
-
 namespace NoteApp.View
 {
     public partial class NoteForm : Form
