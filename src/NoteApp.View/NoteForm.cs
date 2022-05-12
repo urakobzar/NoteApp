@@ -29,12 +29,39 @@ namespace NoteApp.View
         /// <summary>
         /// Объект типа Note, хранящий в себе данные
         /// </summary>
-        private Note _note = new Note("MyNoteTitle", NoteCategory.Miscs, "Hello, world!");
+        private Note _note;
+
+        /// <summary>
+        /// Объект типа Note, являющийся копией основной заметки
+        /// Создан для корректной работы при нажатии кнопки Cancel
+        /// </summary>
+        private Note _noteCopy;
+
+        /// <summary>
+        /// Если нажата кнопка OK, то форма закрывается без вопроса
+        /// "Are you sure about your decision?"
+        /// </summary>
+        private bool _isOKPressed;
+
+        /// <summary>
+        /// Возвращает или задает значение заметки
+        /// </summary>
+        public Note Note
+        {
+            get
+            {
+                return _note;
+            }
+            set
+            {
+                _note = value;
+            }
+        }
 
         /// <summary>
         /// Текстовая переменная, уведомляющая о наличии ошибок
         /// </summary>
-        private string _noteTitleError = "";
+        private string _noteCopyTitleError = "";
 
         /// <summary>
         /// Конструктор формы
@@ -43,6 +70,24 @@ namespace NoteApp.View
         {
             InitializeComponent();
             ComboBoxNoteCategory.DataSource = Enum.GetValues(typeof(NoteCategory));
+            _isOKPressed = false;
+        }
+
+        /// <summary>
+        /// Создает копию текущей заметки и обновляет содержимое формы
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void NoteForm_Load(object sender, EventArgs e)
+        {
+            if (_note != null)
+            {
+                _noteCopy = (Note)_note.Clone();
+            }
+            else
+            {
+                _noteCopy = new Note();
+            }
             UpdateForm();
         }
 
@@ -51,11 +96,11 @@ namespace NoteApp.View
         /// </summary>
         private void UpdateForm()
         {
-            ComboBoxNoteCategory.SelectedItem = _note.NoteCategory;
-            TextBoxNoteTitle.Text = _note.Title;
-            NoteDateCreate.Value = _note.CreationTime;
-            NoteDateModify.Value = _note.LastModificationTime;
-            TextBoxNoteText.Text = _note.Text;
+            ComboBoxNoteCategory.SelectedItem = _noteCopy.NoteCategory;
+            TextBoxNoteTitle.Text = _noteCopy.Title;
+            NoteDateCreate.Value = _noteCopy.CreationTime;
+            NoteDateModify.Value = _noteCopy.LastModificationTime;
+            TextBoxNoteText.Text = _noteCopy.Text;
         }
 
         /// <summary>
@@ -64,9 +109,9 @@ namespace NoteApp.View
         /// <returns></returns>
         private bool CheckFormOnErrors()
         {
-            if (_noteTitleError != "")
+            if (_noteCopyTitleError != "")
             {
-                MessageBox.Show(_noteTitleError);
+                MessageBox.Show(_noteCopyTitleError);
                 return false;
             }
             else
@@ -78,11 +123,11 @@ namespace NoteApp.View
         /// <summary>
         /// Обновляет данные в объекте с элементов пользовательского интерфейса
         /// </summary>
-        private void UpdateObject()
+        private void UpdateNote()
         {
-            _note.NoteCategory = (NoteCategory)ComboBoxNoteCategory.SelectedItem;
-            _note.Title = TextBoxNoteTitle.Text;
-            _note.Text = TextBoxNoteText.Text;
+            _noteCopy.NoteCategory = (NoteCategory)ComboBoxNoteCategory.SelectedItem;
+            _noteCopy.Title = TextBoxNoteTitle.Text;
+            _noteCopy.Text = TextBoxNoteText.Text;
         }
 
         /// <summary>
@@ -92,7 +137,7 @@ namespace NoteApp.View
         /// <param name="e"></param>
         private void ButtonCancel_Click(object sender, EventArgs e)
         {
-            Close();
+            DialogResult = DialogResult.No;
         }
 
         /// <summary>
@@ -103,7 +148,10 @@ namespace NoteApp.View
         private void ButtonOK_Click(object sender, EventArgs e)
         {
             CheckFormOnErrors();
-            UpdateObject();
+            UpdateNote();
+            _note = _noteCopy;
+            _isOKPressed = true;
+            DialogResult = DialogResult.Yes;
         }
 
         /// <summary>
@@ -115,13 +163,13 @@ namespace NoteApp.View
         {
             try
             {
-                _note.Title = TextBoxNoteTitle.Text;
-                _noteTitleError = "";
+                _noteCopy.Title = TextBoxNoteTitle.Text;
+                _noteCopyTitleError = "";
                 TextBoxNoteTitle.BackColor = _correctColor;
             }
             catch (ArgumentException exception)
             {
-                _noteTitleError = exception.Message;
+                _noteCopyTitleError = exception.Message;
                 TextBoxNoteTitle.BackColor = _errorColor;
             }
         }
@@ -133,11 +181,14 @@ namespace NoteApp.View
         /// <param name="e"></param>
         private void NoteForm_FormClosing(object sender, FormClosingEventArgs e)
         {
-            DialogResult dialogResult = MessageBox.Show("Are you sure you want to close " +
-                "the program?", "A warning", MessageBoxButtons.YesNo);
-            if (dialogResult == DialogResult.No)
+            if(!_isOKPressed)
             {
-                e.Cancel = true;
+                DialogResult dialogResult = MessageBox.Show("Are you sure about your decision? ",
+                    "A warning", MessageBoxButtons.YesNo);
+                if (dialogResult == DialogResult.No)
+                {
+                    e.Cancel = true;
+                }
             }
         }
     }
