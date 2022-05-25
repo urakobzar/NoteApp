@@ -43,7 +43,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Note.cs" />
-    <Compile Include="NoteCategoryEnum.cs" />
+    <Compile Include="NoteCategory.cs" />
+    <Compile Include="NoteCategoryTools.cs" />
     <Compile Include="Project.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

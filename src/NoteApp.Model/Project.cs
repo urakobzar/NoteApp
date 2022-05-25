@@ -29,9 +29,9 @@ namespace NoteApp.Model
         /// </summary>
         /// <param name="notes">Передаваемый список заметок</param>
         /// <returns></returns>
-        public List <Note> SortByModificationTime(List <Note> notes)
+        public List<Note> SortByModificationTime(List<Note> notes)
         {
-            notes = notes.OrderByDescending(note => 
+            notes = notes.OrderByDescending(note =>
                 note.LastModificationTime).ToList();
             return notes;
         }
@@ -42,7 +42,7 @@ namespace NoteApp.Model
         /// <param name="notes">Передаваемый список заметок</param>
         /// <param name="noteCategory">Передаваемая категория заметки</param>
         /// <returns></returns>
-        public List <Note> SearchByCategory(List <Note> notes, NoteCategory noteCategory)
+        public List<Note> SearchByCategory(List<Note> notes, NoteCategory noteCategory)
         {
             notes = Notes.Where(note =>
                 note.NoteCategory == noteCategory).ToList();
