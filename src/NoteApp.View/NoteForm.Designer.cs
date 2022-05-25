@@ -220,7 +220,6 @@ namespace NoteApp.View
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Add/Edit Note";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.NoteForm_FormClosing);
-            this.Load += new System.EventHandler(this.NoteForm_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

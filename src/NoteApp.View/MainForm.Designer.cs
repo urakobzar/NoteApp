@@ -103,7 +103,7 @@ namespace NoteApp.View
             this.EditNoteButton.Cursor = System.Windows.Forms.Cursors.Hand;
             this.EditNoteButton.FlatAppearance.BorderSize = 0;
             this.EditNoteButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.EditNoteButton.Location = new System.Drawing.Point(75, 529);
+            this.EditNoteButton.Location = new System.Drawing.Point(39, 529);
             this.EditNoteButton.MaximumSize = new System.Drawing.Size(30, 35);
             this.EditNoteButton.Name = "EditNoteButton";
             this.EditNoteButton.Size = new System.Drawing.Size(30, 35);
@@ -120,7 +120,7 @@ namespace NoteApp.View
             this.DeleteNoteButton.Cursor = System.Windows.Forms.Cursors.Hand;
             this.DeleteNoteButton.FlatAppearance.BorderSize = 0;
             this.DeleteNoteButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.DeleteNoteButton.Location = new System.Drawing.Point(39, 529);
+            this.DeleteNoteButton.Location = new System.Drawing.Point(75, 529);
             this.DeleteNoteButton.MaximumSize = new System.Drawing.Size(30, 35);
             this.DeleteNoteButton.Name = "DeleteNoteButton";
             this.DeleteNoteButton.Size = new System.Drawing.Size(30, 35);
