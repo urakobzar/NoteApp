@@ -10,8 +10,14 @@ using System.Windows.Forms;
 
 namespace NoteApp.View
 {
+    /// <summary>
+    /// Описывает форму информационного окна.
+    /// </summary>
     public partial class AboutForm : Form
     {
+        /// <summary>
+        /// Конструктор формы.
+        /// </summary>
         public AboutForm()
         {
             InitializeComponent();

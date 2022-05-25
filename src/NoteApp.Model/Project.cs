@@ -7,17 +7,17 @@ using System.Threading.Tasks;
 namespace NoteApp.Model
 {
     /// <summary>
-    /// Описывает проект
+    /// Описывает проект.
     /// </summary>
     public class Project
     {
         /// <summary>
-        /// Список всех заметок, созданных в приложении
+        /// Список всех заметок, созданных в приложении.
         /// </summary>
         public List<Note> Notes { get; set; }
 
         /// <summary>
-        /// Конструктор класса
+        /// Конструктор класса.
         /// </summary>
         public Project()
         {
@@ -25,10 +25,10 @@ namespace NoteApp.Model
         }
 
         /// <summary>
-        /// Функция сортировки всех заметок по убыванию
+        /// Функция сортировки всех заметок по убыванию.
         /// </summary>
-        /// <param name="notes">Передаваемый список заметок</param>
-        /// <returns></returns>
+        /// <param name="notes">Передаваемый список заметок.</param>
+        /// <returns>Отсортированный список заметок по последней дате редактирования.</returns>
         public List<Note> SortByModificationTime(List<Note> notes)
         {
             notes = notes.OrderByDescending(note =>
@@ -37,11 +37,11 @@ namespace NoteApp.Model
         }
 
         /// <summary>
-        /// Функция выборки всех заметок по передаваемой категории
+        /// Функция выборки всех заметок по передаваемой категории.
         /// </summary>
-        /// <param name="notes">Передаваемый список заметок</param>
-        /// <param name="noteCategory">Передаваемая категория заметки</param>
-        /// <returns></returns>
+        /// <param name="notes">Передаваемый список заметок.</param>
+        /// <param name="noteCategory">Передаваемая категория заметки.</param>
+        /// <returns>Отсортированный список заметок по выбранной категории заметок.</returns>
         public List<Note> SearchByCategory(List<Note> notes, NoteCategory noteCategory)
         {
             notes = Notes.Where(note =>
