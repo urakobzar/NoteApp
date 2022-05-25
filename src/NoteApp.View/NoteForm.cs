@@ -38,9 +38,20 @@ namespace NoteApp.View
 
         /// <summary>
         /// Если нажата кнопка OK, то форма закрывается без вопроса
-        /// "Are you sure about your decision?"
+        /// "Do you really want to lose all unsaved data?"
         /// </summary>
         private bool _isOKPressed;
+
+        /// <summary>
+        /// Текстовая переменная, уведомляющая о наличии ошибок
+        /// </summary>
+        private string _noteCopyTitleError = "";
+
+        /// <summary>
+        /// Переменная класса, представляющего из себя два словаря типа 
+        /// <Enum, String> и <String, Enum> 
+        /// </summary>
+        private NoteCategoryTools _noteCategoryTools = new NoteCategoryTools();
 
         /// <summary>
         /// Возвращает или задает значение заметки
@@ -54,13 +65,17 @@ namespace NoteApp.View
             set
             {
                 _note = value;
+                if (_note != null)
+                {
+                    _noteCopy = (Note)_note.Clone();
+                }
+                else
+                {
+                    _noteCopy = new Note();
+                }
+                UpdateForm();
             }
         }
-
-        /// <summary>
-        /// Текстовая переменная, уведомляющая о наличии ошибок
-        /// </summary>
-        private string _noteCopyTitleError = "";
 
         /// <summary>
         /// Конструктор формы
@@ -72,29 +87,11 @@ namespace NoteApp.View
         }
 
         /// <summary>
-        /// Создает копию текущей заметки и обновляет содержимое формы
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void NoteForm_Load(object sender, EventArgs e)
-        {
-            if (_note != null)
-            {
-                _noteCopy = (Note)_note.Clone();
-            }
-            else
-            {
-                _noteCopy = new Note();
-            }
-            UpdateForm();
-        }
-
-        /// <summary>
         /// Обновляет все элементы управления по данным из объекта
         /// </summary>
         private void UpdateForm()
         {
-            ComboBoxNoteCategory.SelectedItem = _noteCopy.NoteCategory.ToString();
+            ComboBoxNoteCategory.SelectedItem = _noteCategoryTools.CategoriesByEnum[_noteCopy.NoteCategory];
             TextBoxNoteTitle.Text = _noteCopy.Title;
             NoteDateCreate.Value = _noteCopy.CreationTime;
             NoteDateModify.Value = _noteCopy.LastModificationTime;
@@ -123,16 +120,8 @@ namespace NoteApp.View
         /// </summary>
         private void UpdateNote()
         {
-            if (ComboBoxNoteCategory.SelectedItem.ToString() == "Health and Sports")
-            {
-                _noteCopy.NoteCategory = (NoteCategory)Enum.Parse(typeof(NoteCategory),
-                    "HealthAndSports");
-            }
-            else
-            {
-                _noteCopy.NoteCategory = (NoteCategory)Enum.Parse(typeof(NoteCategory),
-                    ComboBoxNoteCategory.SelectedItem.ToString());
-            }
+            _noteCopy.NoteCategory = _noteCategoryTools.CategoriesByString
+                [ComboBoxNoteCategory.SelectedItem.ToString()];
             _noteCopy.Title = TextBoxNoteTitle.Text;
             _noteCopy.Text = TextBoxNoteText.Text;
         }
@@ -144,7 +133,7 @@ namespace NoteApp.View
         /// <param name="e"></param>
         private void ButtonCancel_Click(object sender, EventArgs e)
         {
-            DialogResult = DialogResult.No;
+            DialogResult = DialogResult.Cancel;
         }
 
         /// <summary>
@@ -154,11 +143,13 @@ namespace NoteApp.View
         /// <param name="e"></param>
         private void ButtonOK_Click(object sender, EventArgs e)
         {
-            CheckFormOnErrors();
-            UpdateNote();
-            _note = _noteCopy;
-            _isOKPressed = true;
-            DialogResult = DialogResult.Yes;
+            if (CheckFormOnErrors())
+            {
+                UpdateNote();
+                _note = _noteCopy;
+                _isOKPressed = true;
+                DialogResult = DialogResult.OK;
+            }
         }
 
         /// <summary>
@@ -188,11 +179,11 @@ namespace NoteApp.View
         /// <param name="e"></param>
         private void NoteForm_FormClosing(object sender, FormClosingEventArgs e)
         {
-            if(!_isOKPressed)
+            if (!_isOKPressed)
             {
-                DialogResult dialogResult = MessageBox.Show("Are you sure about your decision? ",
-                    "A warning", MessageBoxButtons.YesNo);
-                if (dialogResult == DialogResult.No)
+                DialogResult dialogResult = MessageBox.Show("Do you really want to lose all" +
+                " unsaved data? ", "Warning", MessageBoxButtons.OKCancel);
+                if (dialogResult == DialogResult.Cancel)
                 {
                     e.Cancel = true;
                 }
