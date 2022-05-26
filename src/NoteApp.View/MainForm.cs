@@ -181,6 +181,8 @@ namespace NoteApp.View
             {
                 return;
             }
+            int currentIndex = index;
+            Note note = _project.Notes[index];
             index = FindProjectIndex(index);
             DialogResult dialogResult = MessageBox.Show("Do you want to remove the note:\""
                 + NotesListBox.SelectedItem.ToString() + "?\"", "Warning",
@@ -193,6 +195,7 @@ namespace NoteApp.View
                 UpdateListBox();
                 _projectSerializer.SaveToFile(_project);
             }
+            NotesListBox.SelectedIndex = currentIndex;
         }
 
         /// <summary>
@@ -349,6 +352,7 @@ namespace NoteApp.View
                 "the program?", "Warning", MessageBoxButtons.OKCancel);
             if (dialogResult == DialogResult.Cancel)
             {
+                _projectSerializer.SaveToFile(_project);
                 e.Cancel = true;
             }
             _projectSerializer.SaveToFile(_project);

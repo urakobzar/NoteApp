@@ -70,20 +70,20 @@ namespace NoteApp.Model
             }
             try
             {
-                JsonSerializer serializer = new JsonSerializer();
+            JsonSerializer serializer = new JsonSerializer();
                 using (_stream = File.Open(@FileName, FileMode.OpenOrCreate, FileAccess.Read))
-                {
+            {
                     StreamReader myReader = new StreamReader(_stream);
-                    using (JsonReader reader = new JsonTextReader(myReader))
-                    {
+                using (JsonReader reader = new JsonTextReader(myReader))
+                {
                         project = (Project)serializer.Deserialize(reader, typeof(Project));
                     }
                 }
-            }
+                }
             catch
             {
                 project = new Project();
-            }
+            }      
             if (project==null)
             {
                 project = new Project();
