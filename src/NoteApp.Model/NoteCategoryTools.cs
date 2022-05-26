@@ -6,12 +6,16 @@ using System.Threading.Tasks;
 
 namespace NoteApp.Model
 {
+    /// <summary>
+    /// Описывает вспомогательный класс для конвертирования из перечисления в строку и наоборот.
+    /// </summary>
     public class NoteCategoryTools
     {
         /// <summary>
-        /// Словарь, где ключ - перечисление NoteCategory, значение - строковый эквивалент
+        /// Словарь, где ключ - перечисление NoteCategory, значение - строковый эквивалент.
         /// </summary>
-        public Dictionary<NoteCategory, string> CategoriesByEnum = new Dictionary<NoteCategory, string> 
+        public Dictionary<NoteCategory, string> CategoriesByEnum 
+            = new Dictionary<NoteCategory, string> 
         {
 
             { NoteCategory.Documents, "Documents" },
@@ -31,9 +35,10 @@ namespace NoteApp.Model
         };
 
         /// <summary>
-        /// Словарь, где ключ - строковый эквивалент эквивалент, значение - перечисление NoteCategory
+        /// Словарь, где ключ - строковый эквивалент, значение - перечисление NoteCategory.
         /// </summary>
-        public Dictionary<string, NoteCategory> CategoriesByString = new Dictionary<string, NoteCategory>
+        public Dictionary<string, NoteCategory> CategoriesByString 
+            = new Dictionary<string, NoteCategory>
         {
 
             { "Documents", NoteCategory.Documents },

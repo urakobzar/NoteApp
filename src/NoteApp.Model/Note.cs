@@ -7,37 +7,37 @@ using System.Threading.Tasks;
 namespace NoteApp.Model
 {
     /// <summary>
-    /// Описывает заметку
+    /// Описывает заметку.
     /// </summary>
     public class Note : ICloneable
     {
         /// <summary>
-        /// Название заметки
+        /// Название заметки.
         /// </summary>
         private string _title = "Untitled";
 
         /// <summary>
-        /// Категория заметки
+        /// Категория заметки.
         /// </summary>
         private NoteCategory _noteCategory;
 
         /// <summary>
-        /// Текст заметки
+        /// Текст заметки.
         /// </summary>
         private string _text;
 
         /// <summary>
-        /// Время создания
+        /// Время создания.
         /// </summary>
         private readonly DateTime _creationTime = DateTime.Now;
 
         /// <summary>
-        /// Время последнего изменения
+        /// Время последнего изменения.
         /// </summary>
         private DateTime _lastModificationTime = DateTime.Now;
 
         /// <summary>
-        /// Возвращает или задает название заметки
+        /// Возвращает или задает название заметки.
         /// </summary>
         public string Title
         {
@@ -58,7 +58,7 @@ namespace NoteApp.Model
         }
 
         /// <summary>
-        /// Возвращает или задает категорию заметки
+        /// Возвращает или задает категорию заметки.
         /// </summary>
         public NoteCategory @NoteCategory
         {
@@ -74,7 +74,7 @@ namespace NoteApp.Model
         }
 
         /// <summary>
-        /// Возвращает или задает текст заметки
+        /// Возвращает или задает текст заметки.
         /// </summary>
         public string Text
         {
@@ -90,7 +90,7 @@ namespace NoteApp.Model
         }
 
         /// <summary>
-        /// Возвращает или задает время создания заметки
+        /// Возвращает или задает время создания заметки.
         /// </summary>
         public DateTime CreationTime
         {
@@ -101,7 +101,7 @@ namespace NoteApp.Model
         }
 
         /// <summary>
-        /// Возвращает или задает время последнего изменения заметки
+        /// Возвращает или задает время последнего изменения заметки.
         /// </summary>
         public DateTime LastModificationTime
         {
@@ -118,9 +118,9 @@ namespace NoteApp.Model
         /// <summary>
         ///  Создает экземпляр <see cref="Note">. 
         /// </summary>
-        /// <param name="noteTitle">Название заметки</param>
-        /// <param name="noteCategory">Категория заметки</param>
-        /// <param name="noteText">Текст заметки</param>
+        /// <param name="noteTitle">Название заметки.</param>
+        /// <param name="noteCategory">Категория заметки.</param>
+        /// <param name="noteText">Текст заметки.</param>
         public Note(string title, NoteCategory noteCategory, string text)
         {
             Title = title;
@@ -137,9 +137,9 @@ namespace NoteApp.Model
         }
 
         /// <summary>
-        /// Глубокое копирование заметки
+        /// Глубокое копирование заметки.
         /// </summary>
-        /// <returns></returns>
+        /// <returns>Копию экземпляра класса <see cref="Note">.</returns>
         public object Clone()
         {
             return new Note(Title, @NoteCategory, Text);

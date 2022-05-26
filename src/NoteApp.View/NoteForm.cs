@@ -13,48 +13,51 @@ using NoteApp.Model;
 
 namespace NoteApp.View
 {
+    /// <summary>
+    /// Описывает форму окна добавления/редактирования заметки.
+    /// </summary>
     public partial class NoteForm : Form
     {
         /// <summary>
-        /// Цвет корректного ввода данных
+        /// Цвет корректного ввода данных.
         /// </summary>
         private readonly Color _correctColor = Color.White;
 
         /// <summary>
-        /// Цвет ошибочного ввода данных
+        /// Цвет ошибочного ввода данных.
         /// </summary>
         private readonly Color _errorColor = Color.LightPink;
 
         /// <summary>
-        /// Объект типа Note, хранящий в себе данные
+        /// Объект типа Note, хранящий в себе данные.
         /// </summary>
         private Note _note;
 
         /// <summary>
-        /// Объект типа Note, являющийся копией основной заметки
-        /// Создан для корректной работы при нажатии кнопки Cancel
+        /// Объект типа Note, являющийся копией основной заметки.
+        /// Создан для корректной работы при нажатии кнопки Cancel.
         /// </summary>
         private Note _noteCopy;
 
         /// <summary>
         /// Если нажата кнопка OK, то форма закрывается без вопроса
-        /// "Do you really want to lose all unsaved data?"
+        /// "Do you really want to lose all unsaved data?".
         /// </summary>
         private bool _isOKPressed;
 
         /// <summary>
-        /// Текстовая переменная, уведомляющая о наличии ошибок
+        /// Текстовая переменная, уведомляющая о наличии ошибок.
         /// </summary>
         private string _noteCopyTitleError = "";
 
         /// <summary>
         /// Переменная класса, представляющего из себя два словаря типа 
-        /// <Enum, String> и <String, Enum> 
+        /// <Enum, String> и <String, Enum>.
         /// </summary>
         private NoteCategoryTools _noteCategoryTools = new NoteCategoryTools();
 
         /// <summary>
-        /// Возвращает или задает значение заметки
+        /// Возвращает или задает значение заметки.
         /// </summary>
         public Note Note
         {
@@ -78,7 +81,7 @@ namespace NoteApp.View
         }
 
         /// <summary>
-        /// Конструктор формы
+        /// Конструктор формы.
         /// </summary>
         public NoteForm()
         {
@@ -87,7 +90,7 @@ namespace NoteApp.View
         }
 
         /// <summary>
-        /// Обновляет все элементы управления по данным из объекта
+        /// Обновляет все элементы управления по данным из объекта.
         /// </summary>
         private void UpdateForm()
         {
@@ -99,9 +102,9 @@ namespace NoteApp.View
         }
 
         /// <summary>
-        /// Проверка формы на наличие ошибок
+        /// Проверка формы на наличие ошибок.
         /// </summary>
-        /// <returns></returns>
+        /// <returns>Результат наличия ошибки.</returns>
         private bool CheckFormOnErrors()
         {
             if (_noteCopyTitleError != "")
@@ -116,7 +119,7 @@ namespace NoteApp.View
         }
 
         /// <summary>
-        /// Обновляет данные в объекте с элементов пользовательского интерфейса
+        /// Обновляет данные в объекте с элементов пользовательского интерфейса.
         /// </summary>
         private void UpdateNote()
         {
@@ -127,7 +130,7 @@ namespace NoteApp.View
         }
 
         /// <summary>
-        /// Кнопка "Отмена"
+        /// Кнопка "Отмена".
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -137,7 +140,7 @@ namespace NoteApp.View
         }
 
         /// <summary>
-        /// Кнопка "ОК"
+        /// Кнопка "ОК".
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -153,7 +156,7 @@ namespace NoteApp.View
         }
 
         /// <summary>
-        /// Обработчик события при изменении текста в TextBox названия заметки
+        /// Обработчик события при изменении текста в TextBox названия заметки.
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -173,7 +176,7 @@ namespace NoteApp.View
         }
 
         /// <summary>
-        /// Обработка закрытия формы любым способом
+        /// Обработка закрытия формы любым способом.
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
