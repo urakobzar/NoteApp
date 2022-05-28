@@ -79,7 +79,7 @@ namespace NoteApp.Model
                         project = (Project)serializer.Deserialize(reader, typeof(Project));
                     }
                 }
-            }
+                }
             catch
             {
                 project = new Project();
