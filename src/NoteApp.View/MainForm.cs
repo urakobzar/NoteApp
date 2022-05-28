@@ -47,9 +47,9 @@ namespace NoteApp.View
         /// Конструктор формы.
         /// </summary>
         public MainForm()
-        {
-            _project = _projectSerializer.LoadFromFile();
+        {            
             InitializeComponent();
+            _project = _projectSerializer.LoadFromFile();
             CategoryComboBox.SelectedIndex = 0;
             ClearSelectedNote();
         }
@@ -120,7 +120,7 @@ namespace NoteApp.View
                 string randomNoteTitle = testNoteTitle[titleIndex];
                 string randomNoteText = testNoteText[textIndex];
                 _project.Notes.Add(new Note(randomNoteTitle, randomNoteCategoryEnum,
-                    randomNoteText));
+                    randomNoteText, DateTime.Now, DateTime.Now));
             }
             _projectSerializer.SaveToFile(_project);
         }

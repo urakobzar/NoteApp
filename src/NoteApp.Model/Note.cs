@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -116,17 +117,18 @@ namespace NoteApp.Model
         }
 
         /// <summary>
-        ///  Создает экземпляр <see cref="Note">. 
+        /// Создает экземпляр <see cref="Note">.
         /// </summary>
-        /// <param name="noteTitle">Название заметки.</param>
+        /// <param name="title">Название заметки.</param>
         /// <param name="noteCategory">Категория заметки.</param>
-        /// <param name="noteText">Текст заметки.</param>
-        public Note(string title, NoteCategory noteCategory, string text)
-        {
-            Title = title;
-            @NoteCategory = noteCategory;
-            Text = text;
-        }
+        /// <param name="text">Текст заметки.</param>
+        /// <param name="creationTime">Время создания заметки.</param>
+        /// <param name="lastModificationTime">Время последнего изменения заметки.</param>
+        [JsonConstructor]
+        public Note(string title,  NoteCategory noteCategory, string text,
+            DateTime creationTime, DateTime lastModificationTime) =>
+            (_title, _noteCategory, _text, _creationTime, _lastModificationTime) 
+            = (title, noteCategory, text, creationTime, lastModificationTime);
 
         /// <summary>
         ///  Создает пустой экземпляр <see cref="Note">. 
@@ -142,7 +144,7 @@ namespace NoteApp.Model
         /// <returns>Копию экземпляра класса <see cref="Note">.</returns>
         public object Clone()
         {
-            return new Note(Title, @NoteCategory, Text);
+            return new Note(Title, @NoteCategory, Text, CreationTime, LastModificationTime);
         }
     }
 }
