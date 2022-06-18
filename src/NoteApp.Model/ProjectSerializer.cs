@@ -15,11 +15,6 @@ namespace NoteApp.Model
     public class ProjectSerializer
     {
         /// <summary>
-        /// Экземляр класса потока.
-        /// </summary>
-        private Stream _stream;
-
-        /// <summary>
         /// Путь до файла userdata.json.
         /// </summary>
         public string FileName { get; set; }
@@ -30,20 +25,11 @@ namespace NoteApp.Model
         /// <param name="project">Сохраняемый экземляр класса Project.</param>
         public void SaveToFile(Project project)
         {
-            if (!(Directory.Exists(GetFolderPath(SpecialFolder.ApplicationData) 
-                + "\\Kobzar\\NoteApp")))
-            {
-                Directory.CreateDirectory(GetFolderPath(SpecialFolder.ApplicationData) 
-                    + "\\Kobzar\\NoteApp");
-                if (!File.Exists(FileName))
-                {
-                    File.Create(FileName);
-                }
-            }
+            CreateDirectory();
             JsonSerializer serializer = new JsonSerializer();
-            using (_stream = File.Open(@FileName, FileMode.OpenOrCreate, FileAccess.Write))
+            using (var stream = File.Open(@FileName, FileMode.OpenOrCreate, FileAccess.Write))
             {
-                StreamWriter myWriter = new StreamWriter(_stream);
+                StreamWriter myWriter = new StreamWriter(stream);
                 using (JsonWriter writer = new JsonTextWriter(myWriter))
                 {
                     serializer.Serialize(writer, project);
@@ -58,22 +44,13 @@ namespace NoteApp.Model
         public Project LoadFromFile()
         {
             Project project = null;
-            if (!(Directory.Exists(GetFolderPath(SpecialFolder.ApplicationData)
-                + "\\Kobzar\\NoteApp")))
-            {
-                Directory.CreateDirectory(GetFolderPath(SpecialFolder.ApplicationData)
-                    + "\\Kobzar\\NoteApp");
-                if (!File.Exists(FileName))
-                {
-                    File.Create(FileName);
-                }
-            }
+            CreateDirectory();
             try
             {
             JsonSerializer serializer = new JsonSerializer();
-                using (_stream = File.Open(@FileName, FileMode.OpenOrCreate, FileAccess.Read))
+                using (var stream = File.Open(@FileName, FileMode.OpenOrCreate, FileAccess.Read))
             {
-                    StreamReader myReader = new StreamReader(_stream);
+                    StreamReader myReader = new StreamReader(stream);
                 using (JsonReader reader = new JsonTextReader(myReader))
                 {
                         project = (Project)serializer.Deserialize(reader, typeof(Project));
@@ -98,6 +75,23 @@ namespace NoteApp.Model
         {
             FileName = GetFolderPath(SpecialFolder.ApplicationData)
                     + "\\Kobzar\\NoteApp\\userdata.json";
+        }
+
+        /// <summary>
+        /// Проверка существования директории и её создание в негативном случае
+        /// </summary>
+        private void CreateDirectory()
+        {
+            if (!(Directory.Exists(GetFolderPath(SpecialFolder.ApplicationData)
+                + "\\Kobzar\\NoteApp")))
+            {
+                Directory.CreateDirectory(GetFolderPath(SpecialFolder.ApplicationData)
+                    + "\\Kobzar\\NoteApp");
+                if (!File.Exists(FileName))
+                {
+                    File.Create(FileName);
+                }
+            }
         }
     }
 }
