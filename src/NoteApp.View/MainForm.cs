@@ -130,6 +130,8 @@ namespace NoteApp.View
         /// </summary>
         private void AddNote()
         {
+            int currentNotes = _currentNotes.Count;
+            int currentIndex = NotesListBox.SelectedIndex;
             NoteForm noteForm = new NoteForm();
             noteForm.Note = null;
             noteForm.ShowDialog();
@@ -138,7 +140,14 @@ namespace NoteApp.View
                 _project.Notes.Add(noteForm.Note);
                 OutputByCategory();
                 UpdateListBox();
-                NotesListBox.SelectedIndex = 0;
+                if ((NotesListBox.Items.Count != 0)&&(NotesListBox.Items.Count!= currentNotes))
+                {
+                    NotesListBox.SelectedIndex = 0;
+                }
+                else
+                {
+                    NotesListBox.SelectedIndex = currentIndex;
+                }
                 _projectSerializer.SaveToFile(_project);
             }
         }
@@ -168,7 +177,10 @@ namespace NoteApp.View
                 UpdateListBox();
                 _projectSerializer.SaveToFile(_project);
             }
-            NotesListBox.SelectedIndex = currentIndex;
+            if ((NotesListBox.Items.Count != 0) && (currentIndex < NotesListBox.Items.Count))
+            {
+                NotesListBox.SelectedIndex = currentIndex;
+            }
         }
 
         /// <summary>
@@ -195,7 +207,10 @@ namespace NoteApp.View
                 UpdateListBox();
                 _projectSerializer.SaveToFile(_project);
             }
-            NotesListBox.SelectedIndex = currentIndex;
+            if ((NotesListBox.Items.Count != 0)&&(currentIndex < NotesListBox.Items.Count))
+            {
+                NotesListBox.SelectedIndex = currentIndex;
+            }
         }
 
         /// <summary>
@@ -204,7 +219,7 @@ namespace NoteApp.View
         /// <param name="index">Индекс выбранной заметки.</param>
         private void UpdateSelectedNote(int index)
         {
-            if ((index == -1) || (_currentNotes.Count == 0))
+            if ((index == -1) || (_currentNotes.Count == 0) || (_currentNotes.Count <= index))
             {
                 ClearSelectedNote();
                 return;
